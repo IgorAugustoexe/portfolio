@@ -1,0 +1,47 @@
+import type { LocalizedText } from "@/shared/i18n/getLocalizedText";
+import type { AppIconName } from "@/shared/components/ui/AppIcon/AppIcon";
+
+export interface ServiceItem {
+  icon: AppIconName;
+  title: LocalizedText;
+  description: LocalizedText;
+}
+
+export const aboutContent = {
+  introduction: {
+    pt: [
+      "Sou um desenvolvedor de software interessado em criar produtos digitais claros, úteis e fáceis de manter.",
+      "Este portfólio reúne uma visão objetiva da minha experiência, das tecnologias que utilizo e dos projetos que desenvolvi.",
+    ],
+    en: [
+      "I am a software developer interested in creating clear, useful and maintainable digital products.",
+      "This portfolio provides an objective view of my experience, the technologies I use and the projects I have developed.",
+    ],
+  },
+  services: [
+    {
+      icon: "code",
+      title: { pt: "Desenvolvimento web", en: "Web development" },
+      description: {
+        pt: "Interfaces responsivas construídas com React, Next.js e TypeScript.",
+        en: "Responsive interfaces built with React, Next.js and TypeScript.",
+      },
+    },
+    {
+      icon: "mobile",
+      title: { pt: "Desenvolvimento web", en: "Web development" },
+      description: {
+        pt: "Interfaces responsivas construídas com React, Next.js e TypeScript.",
+        en: "Responsive interfaces built with React, Next.js and TypeScript.",
+      },
+    },
+    {
+      icon: "application",
+      title: { pt: "Aplicações intuitivas", en: "Intuitive applications" },
+      description: {
+        pt: "Experiências simples, consistentes e pensadas para diferentes dispositivos.",
+        en: "Simple and consistent experiences designed for different devices.",
+      },
+    },
+  ] satisfies ServiceItem[],
+};

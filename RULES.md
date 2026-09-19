@@ -38,19 +38,23 @@
 
 - Manter um fundo estrelado discreto em componente próprio, com movimento lento, brilho assíncrono e suporte a `prefers-reduced-motion`.
 - No desktop, manter a sidebar à esquerda visível com `position: sticky` durante a rolagem da página.
-- Exibir e-mail, LinkedIn e GitHub no card da sidebar.
+- Apresentar a sidebar como faixa de identidade com divisor, sem card fechado.
+- Exibir e-mail, LinkedIn e GitHub na sidebar.
 - Manter LinkedIn e GitHub como links externos clicáveis dentro da lista de contatos.
-- Posicionar a navegação em um bloco escuro arredondado no topo direito do painel principal.
+- Posicionar a navegação em um bloco escuro arredondado no topo direito do conteúdo.
+- Deixar o conteúdo principal integrado ao fundo estrelado, usando cards apenas nas seções internas.
+- Criar o planeta e a órbita da home com Styled Components, de forma decorativa e sutil.
 - Usar um switch de idioma marcado para PT e desmarcado para EN, preservando a página atual na troca.
 - Manter dimensões fixas nos itens da navegação e no seletor para evitar saltos visuais ao trocar o idioma.
 - Não criar rolagem interna no painel direito; a rolagem deve pertencer à página.
 - Reservar permanentemente o espaço da barra de rolagem para evitar deslocamentos laterais entre páginas curtas e longas.
 - Permitir que o painel direito cresça de acordo com o conteúdo.
 - Usar nos dois painéis somente uma altura mínima compartilhada no desktop.
-- No mobile, empilhar sidebar, navegação e conteúdo na rolagem normal da página.
+- No mobile, empilhar perfil e conteúdo na rolagem normal da página, mantendo a navegação fixa no rodapé.
 - Em tablets e celulares, fazer a sidebar ocupar toda a largura e transformar a navegação em abas fixas no rodapé.
+- Em tablets e celulares, apresentar perfil e seletor PT/EN em uma faixa compacta no topo.
 - Reservar espaço inferior para que as abas do rodapé não cubram o conteúdo.
-- Exibir a autoria e o objetivo do projeto no card da sidebar, abaixo dos contatos.
+- Exibir a autoria e o objetivo do projeto na sidebar do desktop, abaixo dos contatos, e no rodapé do conteúdo no mobile.
 - Manter margens visíveis ao redor do portfólio; o layout não deve ocupar 100% da altura da janela.
 - No mobile, deixar a altura ser determinada pelo conteúdo, sem altura fixa baseada na janela.
 - Manter textos principais com pelo menos 16px e controles apropriados para toque e teclado.

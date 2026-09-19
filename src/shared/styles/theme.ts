@@ -1,10 +1,10 @@
 export const theme = {
     colors: {
         background: {
-            page: "#121212",
-            panel: "#1e1e1f",
-            elevated: "#262627",
-            soft: "#2b2b2c"
+            page: "#0b0e12",
+            panel: "#171a1f",
+            elevated: "#1d2025",
+            soft: "#24272c"
         },
         starfield: {
             base: "#07090c",
@@ -19,16 +19,16 @@ export const theme = {
             inverse: "#151515"
         },
         accent: {
-            primary: "#ffdb70",
-            secondary: "#ffbb5c"
+            primary: "#ffdb86",
+            secondary: "#f3ba61"
         },
         border: {
-            default: "#383838",
-            subtle: "#2d2d2e",
-            highlighted: "#ffdb70"
+            default: "#34383e",
+            subtle: "#292d33",
+            highlighted: "#ffdb86"
         },
         icon: {
-            primary: "#ffdb70",
+            primary: "#ffdb86",
             secondary: "#d6d6d6"
         },
         scrollbar: {
@@ -42,9 +42,10 @@ export const theme = {
         }
     },
     gradients: {
-        accent: "linear-gradient(135deg, #ffdb70 0%, #ffbb5c 100%)",
-        surface: "linear-gradient(145deg, #2b2b2c 0%, #222223 100%)",
-        starfield: "radial-gradient(circle at 50% 35%, #0c1016 0%, #080a0e 48%, #050608 100%)"
+        accent: "linear-gradient(135deg, #ffe4a2 0%, #f5bd69 100%)",
+        surface: "linear-gradient(145deg, rgba(37, 40, 45, 0.92) 0%, rgba(24, 27, 32, 0.94) 100%)",
+        planet: "radial-gradient(circle at 70% 32%, #2b2d30 0%, #171b21 32%, #0c1015 72%)",
+        starfield: "radial-gradient(circle at 50% 35%, #10151b 0%, #0b0e12 54%, #080a0d 100%)"
     },
     fonts: {
         family: {
@@ -89,7 +90,7 @@ export const theme = {
         slow: "400ms ease"
     },
     layout: {
-        maxWidth: "1440px",
+        maxWidth: "1520px",
         desktopCardMinHeight: "640px",
         viewportSpacingVertical: "clamp(1rem, 4dvh, 3rem)",
         viewportSpacingHorizontal: "clamp(1rem, 3vw, 2rem)"

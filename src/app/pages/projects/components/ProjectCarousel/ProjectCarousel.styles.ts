@@ -11,7 +11,7 @@ export const ImageFrame = styled.figure`
     position: relative;
     aspect-ratio: 16 / 10;
     overflow: hidden;
-    background: ${({ theme }) => theme.colors.background.soft};
+    background: ${({ theme }) => theme.colors.background.panel};
     border: 1px solid ${({ theme }) => theme.colors.border.subtle};
     border-radius: ${({ theme }) => theme.radius.md};
 `
@@ -29,11 +29,11 @@ export const Controls = styled.div`
 
 export const ControlButton = styled.button`
     display: grid;
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     place-items: center;
     color: ${({ theme }) => theme.colors.accent.primary};
-    background: ${({ theme }) => theme.colors.background.elevated};
+    background: ${({ theme }) => theme.colors.background.panel};
     border: 1px solid ${({ theme }) => theme.colors.border.default};
     border-radius: ${({ theme }) => theme.radius.md};
     transition:

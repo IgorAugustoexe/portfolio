@@ -9,33 +9,30 @@ export const Container = styled.aside`
     display: flex;
     flex-direction: column;
     min-height: ${({ theme }) => theme.layout.desktopCardMinHeight};
-    padding: ${({ theme }) => theme.spacing.xl} ${({ theme }) => theme.spacing.lg};
-    overflow: hidden;
-    background: ${({ theme }) => theme.colors.background.panel};
-    border: 1px solid ${({ theme }) => theme.colors.border.default};
-    border-radius: ${({ theme }) => theme.radius.lg};
-    box-shadow: ${({ theme }) => theme.shadows.card};
+    padding: ${({ theme }) => theme.spacing.xl} ${({ theme }) => theme.spacing.lg}
+        ${({ theme }) => theme.spacing.md} 0;
+    border-right: 1px solid ${({ theme }) => theme.colors.border.subtle};
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
         position: static;
         width: 100%;
         min-height: 0;
-        padding: ${({ theme }) => theme.spacing.lg};
-        overflow: hidden;
-        border-radius: ${({ theme }) => theme.radius.lg};
+        padding: ${({ theme }) => theme.spacing.lg} 0;
+        border-right: 0;
+        border-bottom: 1px solid ${({ theme }) => theme.colors.border.subtle};
     }
 `
 
 export const ProfileHeader = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
         flex-direction: row;
+        align-items: center;
         width: 100%;
-        text-align: left;
 
         > div {
             min-width: 0;
@@ -44,47 +41,61 @@ export const ProfileHeader = styled.div`
 `
 
 export const Avatar = styled(Image)`
-    width: 132px;
-    height: 132px;
+    width: 112px;
+    height: 112px;
     margin-bottom: ${({ theme }) => theme.spacing.lg};
     object-fit: cover;
     background: ${({ theme }) => theme.gradients.surface};
-    border-radius: ${({ theme }) => theme.radius.lg};
+    border-radius: ${({ theme }) => theme.radius.md};
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-        width: 88px;
-        height: 88px;
-        margin: 0 ${({ theme }) => theme.spacing.lg} 0 0;
+        width: 64px;
+        height: 64px;
+        margin: 0 ${({ theme }) => theme.spacing.md} 0 0;
     }
 `
 
 export const Name = styled.h2`
-    font-size: ${({ theme }) => theme.fonts.size.xl};
-    font-weight: ${({ theme }) => theme.fonts.weight.medium};
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    font-weight: ${({ theme }) => theme.fonts.weight.semibold};
     line-height: 1.3;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-        font-size: ${({ theme }) => theme.fonts.size.lg};
+        font-size: 1.05rem;
     }
 `
 
 export const Role = styled.p`
     width: fit-content;
-    margin: ${({ theme }) => theme.spacing.md} auto 0;
-    padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.md};
-    color: ${({ theme }) => theme.colors.text.secondary};
+    margin-top: ${({ theme }) => theme.spacing.xs};
+    color: ${({ theme }) => theme.colors.text.muted};
     font-size: ${({ theme }) => theme.fonts.size.sm};
-    background: ${({ theme }) => theme.colors.background.soft};
-    border-radius: ${({ theme }) => theme.radius.sm};
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        font-size: 0.78rem;
+    }
+`
+
+export const MobileLanguageSlot = styled.div`
+    display: none;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-        margin-left: 0;
+        display: flex;
+        margin-left: auto;
+        padding-left: ${({ theme }) => theme.spacing.sm};
     }
 `
 
 export const Details = styled.div`
     margin-top: ${({ theme }) => theme.spacing.xl};
-    border-top: 1px solid ${({ theme }) => theme.colors.border.default};
+    padding-top: ${({ theme }) => theme.spacing.lg};
+    border-top: 1px solid ${({ theme }) => theme.colors.border.subtle};
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+    }
 `
 
 export const DetailsToggle = styled.button`
@@ -99,44 +110,46 @@ export const DetailsToggle = styled.button`
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
         display: block;
+        padding-top: ${({ theme }) => theme.spacing.md};
     }
 `
 
 export const DetailsContent = styled.div<{ $open: boolean }>`
     display: block;
-    padding-top: ${({ theme }) => theme.spacing.xl};
+    padding-top: 0;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
         display: ${({ $open }) => ($open ? "block" : "none")};
+        padding-top: ${({ theme }) => theme.spacing.lg};
     }
 `
 
 export const ContactList = styled.ul`
     display: grid;
-    gap: ${({ theme }) => theme.spacing.lg};
+    gap: ${({ theme }) => theme.spacing.md};
 `
 
 export const ContactItem = styled.li`
     display: grid;
-    grid-template-columns: 42px minmax(0, 1fr);
+    grid-template-columns: 36px minmax(0, 1fr);
     align-items: center;
     gap: ${({ theme }) => theme.spacing.md};
 `
 
 export const IconBox = styled.span`
     display: grid;
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
     place-items: center;
     color: ${({ theme }) => theme.colors.icon.primary};
     font-weight: ${({ theme }) => theme.fonts.weight.semibold};
-    background: ${({ theme }) => theme.colors.background.elevated};
+    background: rgba(255, 255, 255, 0.04);
     border: 1px solid ${({ theme }) => theme.colors.border.subtle};
     border-radius: ${({ theme }) => theme.radius.md};
 
     svg {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
     }
 `
 
@@ -149,11 +162,9 @@ export const ContactLabel = styled.span`
 
 export const ContactValue = styled.span`
     display: block;
-    overflow: hidden;
     color: ${({ theme }) => theme.colors.text.secondary};
     font-size: ${({ theme }) => theme.fonts.size.sm};
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    overflow-wrap: anywhere;
     transition: color ${({ theme }) => theme.transitions.fast};
 
     a:hover & {
@@ -169,11 +180,10 @@ export const SidebarFooter = styled.footer`
     color: ${({ theme }) => theme.colors.text.muted};
     border-top: 1px solid ${({ theme }) => theme.colors.border.subtle};
     font-size: ${({ theme }) => theme.fonts.size.xs};
-    text-align: center;
+    text-align: left;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-        margin-top: ${({ theme }) => theme.spacing.xl};
-        text-align: left;
+        display: none;
     }
 `
 

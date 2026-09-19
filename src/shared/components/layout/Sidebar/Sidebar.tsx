@@ -3,13 +3,13 @@
 import { useState } from "react";
 import { profile } from "@/shared/data/profile.mock";
 import { AppIcon } from "@/shared/components/ui/AppIcon/AppIcon";
+import { LanguageToggle } from "@/shared/components/layout/Navbar/LanguageToggle";
 import { getDictionary } from "@/shared/i18n/dictionaries";
 import type { Locale } from "@/shared/i18n/config";
 import { getLocalizedText } from "@/shared/i18n/getLocalizedText";
 import {
   Avatar,
   ContactItem,
-  ContactLabel,
   ContactList,
   ContactValue,
   Container,
@@ -17,6 +17,7 @@ import {
   DetailsContent,
   DetailsToggle,
   IconBox,
+  MobileLanguageSlot,
   Name,
   ProfileHeader,
   Role,
@@ -32,11 +33,12 @@ export function Sidebar({ locale }: { locale: Locale }) {
   return (
     <Container>
       <ProfileHeader>
-        <Avatar src={profile.avatar} alt={profile.name} width={132} height={132} priority unoptimized />
+        <Avatar src={profile.avatar} alt={profile.name} width={112} height={112} priority unoptimized />
         <div>
           <Name>{profile.name}</Name>
           <Role>{getLocalizedText(profile.role, locale)}</Role>
         </div>
+        <MobileLanguageSlot><LanguageToggle locale={locale} /></MobileLanguageSlot>
       </ProfileHeader>
 
       <Details>

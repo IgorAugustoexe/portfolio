@@ -4,7 +4,9 @@ import Link from "next/link"
 import styled from "styled-components"
 
 export const BackLink = styled(Link)`
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     margin-bottom: ${({ theme }) => theme.spacing.lg};
     color: ${({ theme }) => theme.colors.accent.primary};
     font-size: ${({ theme }) => theme.fonts.size.sm};
@@ -24,11 +26,15 @@ export const Overview = styled.div`
 export const Information = styled.div`
     display: grid;
     gap: ${({ theme }) => theme.spacing.lg};
+    padding: clamp(1.25rem, 3vw, 2rem);
+    background: ${({ theme }) => theme.gradients.surface};
+    border: 1px solid ${({ theme }) => theme.colors.border.subtle};
+    border-radius: ${({ theme }) => theme.radius.md};
 `
 
 export const SmallTitle = styled.h2`
-    font-size: ${({ theme }) => theme.fonts.size.md};
-    font-weight: ${({ theme }) => theme.fonts.weight.medium};
+    font-size: ${({ theme }) => theme.fonts.size.lg};
+    font-weight: ${({ theme }) => theme.fonts.weight.semibold};
 `
 
 export const TechnologyList = styled.div`
@@ -53,7 +59,7 @@ export const ResultGrid = styled.div`
 `
 
 export const ResultCard = styled.section`
-    padding: ${({ theme }) => theme.spacing.lg};
+    padding: clamp(1.25rem, 3vw, 2rem);
     background: ${({ theme }) => theme.gradients.surface};
     border: 1px solid ${({ theme }) => theme.colors.border.subtle};
     border-radius: ${({ theme }) => theme.radius.md};

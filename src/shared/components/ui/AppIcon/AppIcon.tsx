@@ -1,9 +1,9 @@
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
-import { faCode, faEnvelope, faLaptopCode, faMobile } from "@fortawesome/free-solid-svg-icons";
+import { faCode, faEnvelope, faFileLines, faFolderOpen, faHouse, faLaptopCode, faMobile } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export type AppIconName = "email" | "linkedin" | "github" | "code" | "mobile" | "application";
+export type AppIconName = "email" | "linkedin" | "github" | "code" | "mobile" | "application" | "about" | "resume" | "projects";
 
 const icons: Record<AppIconName, IconDefinition> = {
   email: faEnvelope,
@@ -12,6 +12,9 @@ const icons: Record<AppIconName, IconDefinition> = {
   code: faCode,
   mobile: faMobile,
   application: faLaptopCode,
+  about: faHouse,
+  resume: faFileLines,
+  projects: faFolderOpen,
 };
 
 interface AppIconProps {

@@ -1,32 +1,27 @@
 "use client"
 
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
+import { AppIcon } from "@/shared/components/ui/AppIcon/AppIcon"
 import type { Locale } from "@/shared/i18n/config"
 import { getDictionary } from "@/shared/i18n/dictionaries"
+import { LanguageToggle } from "./LanguageToggle"
 import {
-    LanguageInput,
-    LanguageOption,
-    LanguageSelector,
-    LanguageSwitch,
-    LanguageTrack,
+    DesktopLanguageSlot,
+    NavIcon,
     Navigation,
     NavigationLink,
     NavigationList
 } from "./Navbar.styles"
 
 const items = [
-    { key: "about", path: "about" },
-    { key: "resume", path: "resume" },
-    { key: "projects", path: "projects" }
+    { key: "about", path: "about", icon: "about" },
+    { key: "resume", path: "resume", icon: "resume" },
+    { key: "projects", path: "projects", icon: "projects" }
 ] as const
 
 export function Navbar({ locale }: { locale: Locale }) {
-    const router = useRouter()
     const pathname = usePathname() ?? `/${locale}/about`
     const dictionary = getDictionary(locale)
-    const isPortuguese = locale === "pt"
-    const nextLocale: Locale = locale === "pt" ? "en" : "pt"
-    const localizedPath = pathname.replace(/^\/(pt|en)/, `/${nextLocale}`)
 
     return (
         <Navigation aria-label="Primary navigation">
@@ -38,25 +33,14 @@ export function Navbar({ locale }: { locale: Locale }) {
                     return (
                         <li key={item.path}>
                             <NavigationLink href={href} $active={active} aria-current={active ? "page" : undefined}>
+                                <NavIcon aria-hidden="true"><AppIcon name={item.icon} /></NavIcon>
                                 {dictionary.navigation[item.key]}
                             </NavigationLink>
                         </li>
                     )
                 })}
             </NavigationList>
-            <LanguageSelector>
-                <LanguageOption $active={isPortuguese}>PT</LanguageOption>
-                <LanguageSwitch>
-                    <LanguageInput
-                        type="checkbox"
-                        checked={isPortuguese}
-                        onChange={() => router.push(localizedPath)}
-                        aria-label={isPortuguese ? "Mudar idioma para inglês" : "Change language to Portuguese"}
-                    />
-                    <LanguageTrack />
-                </LanguageSwitch>
-                <LanguageOption $active={!isPortuguese}>EN</LanguageOption>
-            </LanguageSelector>
+            <DesktopLanguageSlot><LanguageToggle locale={locale} /></DesktopLanguageSlot>
         </Navigation>
     )
 }

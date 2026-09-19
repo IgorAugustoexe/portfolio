@@ -4,26 +4,24 @@ import styled from "styled-components"
 
 export const Shell = styled.main`
     display: grid;
-    grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+    grid-template-columns: minmax(205px, 250px) minmax(0, 1fr);
     align-items: start;
-    gap: ${({ theme }) => theme.spacing.xl};
+    gap: clamp(2rem, 4vw, 5rem);
     width: min(100%, ${({ theme }) => theme.layout.maxWidth});
     min-height: ${({ theme }) => theme.layout.desktopCardMinHeight};
     margin: 0 auto;
-    overflow: visible;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
-        grid-template-columns: 250px minmax(0, 1fr);
-        gap: ${({ theme }) => theme.spacing.lg};
+        grid-template-columns: 205px minmax(0, 1fr);
+        gap: ${({ theme }) => theme.spacing.xl};
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: auto;
         min-height: 0;
-        overflow: visible;
+        gap: 0;
     }
 `
 
@@ -31,15 +29,24 @@ export const Content = styled.section`
     position: relative;
     min-width: 0;
     min-height: ${({ theme }) => theme.layout.desktopCardMinHeight};
-    overflow: visible;
-    background: ${({ theme }) => theme.colors.background.panel};
-    border: 1px solid ${({ theme }) => theme.colors.border.default};
-    border-radius: ${({ theme }) => theme.radius.lg};
-    box-shadow: ${({ theme }) => theme.shadows.card};
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
         width: 100%;
         min-height: 0;
-        border-radius: ${({ theme }) => theme.radius.lg};
+    }
+`
+
+export const MobileFooter = styled.footer`
+    display: none;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+        display: grid;
+        gap: ${({ theme }) => theme.spacing.sm};
+        width: 100%;
+        padding: ${({ theme }) => theme.spacing.lg} 0;
+        color: ${({ theme }) => theme.colors.text.muted};
+        border-top: 1px solid ${({ theme }) => theme.colors.border.subtle};
+        font-size: ${({ theme }) => theme.fonts.size.xs};
+        text-align: center;
     }
 `

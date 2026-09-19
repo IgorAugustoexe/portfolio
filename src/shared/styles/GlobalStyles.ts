@@ -56,8 +56,8 @@ export const GlobalStyles = createGlobalStyle`
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
         body {
-            padding: ${({ theme }) => theme.spacing.md};
-            padding-bottom: calc(64px + ${({ theme }) => theme.spacing.xl} + env(safe-area-inset-bottom));
+            padding: 0 clamp(1rem, 4vw, 2rem);
+            padding-bottom: calc(104px + env(safe-area-inset-bottom));
         }
     }
 

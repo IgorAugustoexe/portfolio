@@ -15,7 +15,13 @@ const dictionaries = {
         },
         about: {
             title: "Sobre mim",
-            servicesTitle: "O que eu faço"
+            servicesTitle: "O que eu faço",
+            kicker: "DESENVOLVENDO IDEIAS",
+            greeting: "Olá, sou",
+            viewProjects: "Ver meus projetos",
+            featuredTitle: "Projetos em destaque",
+            featuredDescription: "Alguns projetos que representam minha experiência e meus interesses.",
+            viewAll: "Ver todos os projetos"
         },
         resume: {
             title: "Resumo",
@@ -56,7 +62,13 @@ const dictionaries = {
         },
         about: {
             title: "About me",
-            servicesTitle: "What I do"
+            servicesTitle: "What I do",
+            kicker: "BUILDING IDEAS",
+            greeting: "Hi, I'm",
+            viewProjects: "View my projects",
+            featuredTitle: "Featured projects",
+            featuredDescription: "A few projects that reflect my experience and interests.",
+            viewAll: "View all projects"
         },
         resume: {
             title: "Resume",

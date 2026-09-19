@@ -7,7 +7,7 @@ import styled from "styled-components"
 export const FilterList = styled.ul`
     display: flex;
     flex-wrap: wrap;
-    gap: ${({ theme }) => theme.spacing.lg};
+    gap: ${({ theme }) => theme.spacing.sm};
     margin-bottom: ${({ theme }) => theme.spacing.xl};
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
@@ -16,17 +16,19 @@ export const FilterList = styled.ul`
 `
 
 export const FilterButton = styled.button<{ $active: boolean }>`
-    padding: ${({ theme }) => theme.spacing.sm} 0;
+    min-height: 42px;
+    padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
     color: ${({ theme, $active }) =>
         $active ? theme.colors.accent.primary : theme.colors.text.muted};
-    background: transparent;
-    border: 0;
+    background: ${({ $active }) => $active ? "rgba(255, 219, 134, 0.08)" : "rgba(255, 255, 255, 0.03)"};
+    border: 1px solid ${({ $active, theme }) => $active ? theme.colors.border.highlighted : theme.colors.border.default};
+    border-radius: ${({ theme }) => theme.radius.round};
     font: inherit;
     font-size: ${({ theme }) => theme.fonts.size.sm};
     font-weight: ${({ theme, $active }) =>
         $active ? theme.fonts.weight.semibold : theme.fonts.weight.regular};
     cursor: pointer;
-    transition: color ${({ theme }) => theme.transitions.fast};
+    transition: color ${({ theme }) => theme.transitions.fast}, border-color ${({ theme }) => theme.transitions.fast};
 
     &:hover,
     &:focus-visible {
@@ -53,7 +55,7 @@ export const FilterSelect = styled.select`
     margin-bottom: ${({ theme }) => theme.spacing.xl};
     padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
     color: ${({ theme }) => theme.colors.text.secondary};
-    background: ${({ theme }) => theme.colors.background.elevated};
+    background: ${({ theme }) => theme.colors.background.panel};
     border: 1px solid ${({ theme }) => theme.colors.border.default};
     border-radius: ${({ theme }) => theme.radius.sm};
     font: inherit;
@@ -72,7 +74,7 @@ export const FilterSelect = styled.select`
 export const ProjectGrid = styled.ul`
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: ${({ theme }) => theme.spacing.xl};
+    gap: ${({ theme }) => theme.spacing.lg};
 
     @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
         grid-template-columns: 1fr;
@@ -82,7 +84,7 @@ export const ProjectGrid = styled.ul`
 export const ProjectLink = styled(Link)`
     display: block;
     height: 100%;
-    padding: ${({ theme }) => theme.spacing.md};
+    overflow: hidden;
     background: ${({ theme }) => theme.gradients.surface};
     border: 1px solid ${({ theme }) => theme.colors.border.subtle};
     border-radius: ${({ theme }) => theme.radius.md};
@@ -98,30 +100,31 @@ export const ProjectLink = styled(Link)`
 
 export const ProjectImage = styled(Image)`
     width: 100%;
-    height: 210px;
+    height: clamp(190px, 22vw, 270px);
     object-fit: cover;
-    border-radius: ${({ theme }) => theme.radius.sm};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.border.subtle};
 `
 
 export const ProjectTitle = styled.h2`
-    margin-top: ${({ theme }) => theme.spacing.md};
+    margin: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg} 0;
     font-size: ${({ theme }) => theme.fonts.size.lg};
     font-weight: ${({ theme }) => theme.fonts.weight.medium};
 `
 
 export const ProjectCategory = styled.p`
-    margin: ${({ theme }) => theme.spacing.xs} 0 ${({ theme }) => theme.spacing.sm};
+    margin: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.lg} ${({ theme }) => theme.spacing.sm};
     color: ${({ theme }) => theme.colors.accent.primary};
     font-size: ${({ theme }) => theme.fonts.size.sm};
 `
 
 export const ProjectSummary = styled.p`
+    margin: 0 ${({ theme }) => theme.spacing.lg};
     color: ${({ theme }) => theme.colors.text.muted};
 `
 
 export const DetailsLabel = styled.span`
     display: inline-block;
-    margin-top: ${({ theme }) => theme.spacing.md};
+    margin: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg} ${({ theme }) => theme.spacing.lg};
     color: ${({ theme }) => theme.colors.text.secondary};
     font-size: ${({ theme }) => theme.fonts.size.sm};
     font-weight: ${({ theme }) => theme.fonts.weight.medium};

@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 export const Shell = styled.main`
     display: grid;
-    grid-template-columns: minmax(205px, 250px) minmax(0, 1fr);
+    grid-template-columns: minmax(285px, 300px) minmax(0, 1fr);
     align-items: start;
     gap: clamp(2rem, 4vw, 5rem);
     width: min(100%, ${({ theme }) => theme.layout.maxWidth});
@@ -12,7 +12,7 @@ export const Shell = styled.main`
     margin: 0 auto;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
-        grid-template-columns: 205px minmax(0, 1fr);
+        grid-template-columns: 285px minmax(0, 1fr);
         gap: ${({ theme }) => theme.spacing.xl};
     }
 

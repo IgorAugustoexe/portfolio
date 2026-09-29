@@ -3,29 +3,21 @@
 import { aboutContent } from "@/app/pages/about/data/about.mock"
 import { projects } from "@/app/pages/projects/data/projects.mock"
 import { AppIcon } from "@/shared/components/ui/AppIcon/AppIcon"
-import { profile } from "@/shared/data/profile.mock"
+import { PagePanel } from "@/shared/components/ui/PagePanel/PagePanel"
 import type { Locale } from "@/shared/i18n/config"
 import { getDictionary } from "@/shared/i18n/dictionaries"
 import { getLocalizedText } from "@/shared/i18n/getLocalizedText"
 import {
-    AboutCanvas,
+    AboutIntro,
     AccentLine,
     FeaturedCard,
     FeaturedCopy,
     FeaturedGrid,
     FeaturedImage,
+    FeaturedImageFrame,
     FeaturedLink,
+    FeaturedOverlay,
     FeaturedSection,
-    Hero,
-    HeroContent,
-    HeroIntro,
-    HeroKicker,
-    HeroTitle,
-    Orbit,
-    OrbitDot,
-    OrbitalArt,
-    Planet,
-    PrimaryAction,
     SectionHeading,
     SectionIntro,
     SectionTitleRow,
@@ -42,29 +34,12 @@ export function AboutPage({ locale }: { locale: Locale }) {
     const about = dictionary.about
 
     return (
-        <AboutCanvas>
-            <Hero>
-                <OrbitalArt aria-hidden="true">
-                    <Orbit />
-                    <Planet />
-                    <OrbitDot />
-                </OrbitalArt>
-                <HeroContent>
-                    <HeroKicker><AccentLine />{about.kicker}</HeroKicker>
-                    <HeroTitle>
-                        {about.greeting}<br />
-                        <span>{profile.name}.</span>
-                    </HeroTitle>
-                    <HeroIntro>
-                        {aboutContent.introduction[locale].map((paragraph, index) => (
-                            <p key={index}>{paragraph}</p>
-                        ))}
-                    </HeroIntro>
-                    <PrimaryAction href={`/${locale}/projects`}>
-                        {about.viewProjects}<span aria-hidden="true">→</span>
-                    </PrimaryAction>
-                </HeroContent>
-            </Hero>
+        <PagePanel title={about.title}>
+            <AboutIntro>
+                {aboutContent.introduction[locale].map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                ))}
+            </AboutIntro>
 
             <section aria-labelledby="services-heading">
                 <SectionTitleRow>
@@ -100,12 +75,18 @@ export function AboutPage({ locale }: { locale: Locale }) {
                     {projects.slice(0, 2).map((project) => (
                         <li key={project.slug}>
                             <FeaturedCard href={`/${locale}/projects/${project.slug}`}>
-                                <FeaturedImage
-                                    src={project.images[0].src}
-                                    alt={getLocalizedText(project.images[0].alt, locale)}
-                                    width={720}
-                                    height={440}
-                                />
+                                <FeaturedImageFrame>
+                                    <FeaturedImage
+                                        src={project.images[0].src}
+                                        alt={getLocalizedText(project.images[0].alt, locale)}
+                                        width={720}
+                                        height={440}
+                                    />
+                                    <FeaturedOverlay aria-hidden="true">
+                                        <AppIcon name="view" />
+                                        <span>{dictionary.projects.details}</span>
+                                    </FeaturedOverlay>
+                                </FeaturedImageFrame>
                                 <FeaturedCopy>
                                     <strong>{project.title}</strong>
                                     <span>{project.content[locale].summary}</span>
@@ -115,6 +96,6 @@ export function AboutPage({ locale }: { locale: Locale }) {
                     ))}
                 </FeaturedGrid>
             </FeaturedSection>
-        </AboutCanvas>
+        </PagePanel>
     )
 }

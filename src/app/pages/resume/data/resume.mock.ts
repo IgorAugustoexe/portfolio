@@ -10,6 +10,15 @@ export const education: TimelineItem[] = [
       en: "Education focused on systems development, software architecture and engineering practices.",
     },
   },
+  {
+    title: { pt: "Engenharia de Software", en: "Software Engineering" },
+    organization: "Universidade Exemplo",
+    period: "2020 — 2024",
+    description: {
+      pt: "Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia.",
+      en: "Education focused on systems development, software architecture and engineering practices.",
+    },
+  },
 ];
 
 export const experience: TimelineItem[] = [
@@ -20,6 +29,15 @@ export const experience: TimelineItem[] = [
     description: {
       pt: "Desenvolvimento de interfaces responsivas e manutenção de aplicações web com React e TypeScript.",
       en: "Development of responsive interfaces and maintenance of web applications with React and TypeScript.",
+    },
+  },
+  {
+    title: { pt: "Desenvolvedor de Software", en: "Software Developer" },
+    organization: "Projeto Independente",
+    period: "2021 — 2023",
+    description: {
+      pt: "Criação de soluções locais, componentes reutilizáveis e integração entre diferentes partes da interface.",
+      en: "Creation of local solutions, reusable components and integration between different interface areas.",
     },
   },
   {

@@ -40,10 +40,11 @@
 - No desktop, manter a sidebar à esquerda visível com `position: sticky` durante a rolagem da página.
 - Apresentar a sidebar como faixa de identidade com divisor, sem card fechado.
 - Exibir e-mail, LinkedIn e GitHub na sidebar.
+- Manter os contatos sempre visíveis em todas as larguras, com avatar maior e centralizado no perfil.
 - Manter LinkedIn e GitHub como links externos clicáveis dentro da lista de contatos.
 - Posicionar a navegação em um bloco escuro arredondado no topo direito do conteúdo.
 - Deixar o conteúdo principal integrado ao fundo estrelado, usando cards apenas nas seções internas.
-- Criar o planeta e a órbita da home com Styled Components, de forma decorativa e sutil.
+- Manter a home sem planeta ou órbita; o fundo estrelado compartilhado fornece o detalhe decorativo.
 - Usar um switch de idioma marcado para PT e desmarcado para EN, preservando a página atual na troca.
 - Manter dimensões fixas nos itens da navegação e no seletor para evitar saltos visuais ao trocar o idioma.
 - Não criar rolagem interna no painel direito; a rolagem deve pertencer à página.
@@ -52,7 +53,7 @@
 - Usar nos dois painéis somente uma altura mínima compartilhada no desktop.
 - No mobile, empilhar perfil e conteúdo na rolagem normal da página, mantendo a navegação fixa no rodapé.
 - Em tablets e celulares, fazer a sidebar ocupar toda a largura e transformar a navegação em abas fixas no rodapé.
-- Em tablets e celulares, apresentar perfil e seletor PT/EN em uma faixa compacta no topo.
+- Em tablets e celulares, mostrar avatar e descrição na coluna esquerda, com contatos e seletor PT/EN na coluna direita, separados por divisor vertical.
 - Reservar espaço inferior para que as abas do rodapé não cubram o conteúdo.
 - Exibir a autoria e o objetivo do projeto na sidebar do desktop, abaixo dos contatos, e no rodapé do conteúdo no mobile.
 - Manter margens visíveis ao redor do portfólio; o layout não deve ocupar 100% da altura da janela.

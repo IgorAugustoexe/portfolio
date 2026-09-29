@@ -1,6 +1,7 @@
 "use client";
 
 import { education, experience, skills } from "@/app/pages/resume/data/resume.mock";
+import { AppIcon } from "@/shared/components/ui/AppIcon/AppIcon";
 import { PagePanel } from "@/shared/components/ui/PagePanel/PagePanel";
 import type { Locale } from "@/shared/i18n/config";
 import { getDictionary } from "@/shared/i18n/dictionaries";
@@ -11,22 +12,24 @@ import {
   EntryTitle,
   ResumeGrid,
   Section,
-  SectionTitle,
   SkillFill,
   SkillHeader,
   SkillsCard,
   SkillTrack,
   Timeline,
   TimelineEntry,
+  TimelineSectionTitle,
+  TimelineTitleIcon,
 } from "./ResumePage.styles";
+import { AccentLine, SectionHeading, SectionTitleRow } from "../about/AboutPage.styles";
 
 export function ResumePage({ locale }: { locale: Locale }) {
   const dictionary = getDictionary(locale).resume;
 
   const renderTimeline = (items: typeof education) => (
     <Timeline>
-      {items.map((item) => (
-        <TimelineEntry key={`${item.organization}-${item.period}`}>
+      {items.map((item, index) => (
+        <TimelineEntry key={`${item.organization}-${item.period}-${index}`}>
           <EntryTitle>{getLocalizedText(item.title, locale)}</EntryTitle>
           <EntryMeta>
             {item.organization} · {item.period}
@@ -41,17 +44,29 @@ export function ResumePage({ locale }: { locale: Locale }) {
     <PagePanel title={dictionary.title}>
       <ResumeGrid>
         <Section>
-          <SectionTitle>{dictionary.educationTitle}</SectionTitle>
+          <TimelineSectionTitle>
+            <TimelineTitleIcon aria-hidden="true">
+              <AppIcon name="code" />
+            </TimelineTitleIcon>
+            {dictionary.educationTitle}
+          </TimelineSectionTitle>
           {renderTimeline(education)}
         </Section>
 
         <Section>
-          <SectionTitle>{dictionary.experienceTitle}</SectionTitle>
+          <TimelineSectionTitle>
+            <TimelineTitleIcon aria-hidden="true">
+              <AppIcon name="code" />
+            </TimelineTitleIcon>
+            {dictionary.experienceTitle}
+          </TimelineSectionTitle>
           {renderTimeline(experience)}
         </Section>
 
         <Section>
-          <SectionTitle>{dictionary.skillsTitle}</SectionTitle>
+          <SectionTitleRow>
+            <SectionHeading><AccentLine />{dictionary.skillsTitle}</SectionHeading>
+          </SectionTitleRow>
           <SkillsCard>
             {skills.map((skill) => (
               <div key={skill.name}>

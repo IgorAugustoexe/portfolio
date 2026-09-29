@@ -45,6 +45,15 @@ export const NavigationList = styled.ul`
         min-width: 104px;
     }
 
+    @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+        grid-template-columns: repeat(3, 98px);
+
+        li {
+            width: 98px;
+            min-width: 98px;
+        }
+    }
+
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -125,6 +134,12 @@ export const LanguageSelector = styled.div`
     min-width: 118px;
     height: 58px;
     padding: 0 ${({ theme }) => theme.spacing.sm};
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+        flex-basis: 110px;
+        width: 110px;
+        min-width: 110px;
+    }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
         flex-basis: auto;

@@ -27,15 +27,53 @@ export const SectionTitle = styled.h2`
   }
 `;
 
-export const Timeline = styled.ol`
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: ${({ theme }) => theme.spacing.md};
-  padding-left: 0;
-  border-left: 0;
+export const TimelineSectionTitle = styled(SectionTitle)`
+  &::before {
+    display: none;
+  }
+`;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    grid-template-columns: 1fr;
+export const TimelineTitleIcon = styled.span`
+  position: relative;
+  z-index: 2;
+  display: grid;
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  color: ${({ theme }) => theme.colors.accent.primary};
+  background:
+    linear-gradient(rgba(255, 219, 134, 0.04), rgba(255, 219, 134, 0.04)),
+    ${({ theme }) => theme.colors.background.page};
+  border: 1px solid rgba(255, 219, 134, 0.2);
+  border-radius: ${({ theme }) => theme.radius.md};
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    width: 40px;
+    height: 40px;
+  }
+`;
+
+export const Timeline = styled.ol`
+  --timeline-gutter: calc(${({ theme }) => theme.spacing.xxl} + ${({ theme }) => theme.spacing.sm});
+  --timeline-gap: ${({ theme }) => theme.spacing.lg};
+  --timeline-axis: 24px;
+  --timeline-title-lead: 48px;
+  --timeline-marker-offset: calc(${({ theme }) => theme.spacing.lg} + 14px);
+
+  display: grid;
+  gap: var(--timeline-gap);
+  padding-left: var(--timeline-gutter);
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    --timeline-gutter: calc(${({ theme }) => theme.spacing.xl} + ${({ theme }) => theme.spacing.sm});
+    --timeline-axis: 20px;
+    --timeline-title-lead: 44px;
   }
 `;
 
@@ -45,6 +83,37 @@ export const TimelineEntry = styled.li`
   background: ${({ theme }) => theme.gradients.surface};
   border: 1px solid ${({ theme }) => theme.colors.border.subtle};
   border-radius: ${({ theme }) => theme.radius.md};
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    bottom: -12px;
+    left: calc(var(--timeline-axis) - var(--timeline-gutter));
+    width: 1px;
+    background: ${({ theme }) => theme.colors.border.default};
+  }
+
+  &:first-child::before {
+    top: calc(-1 * var(--timeline-title-lead));
+  }
+
+  &:last-child::before {
+    bottom: calc(100% - var(--timeline-marker-offset) + 2px);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: calc(var(--timeline-marker-offset) - 6px);
+    left: calc(var(--timeline-axis) - var(--timeline-gutter) - 5.5px);
+    width: 12px;
+    height: 12px;
+    background: ${({ theme }) => theme.gradients.accent};
+    border-radius: ${({ theme }) => theme.radius.round};
+    box-shadow: 0 0 0 7px ${({ theme }) => theme.colors.background.soft};
+  }
 `;
 
 export const EntryTitle = styled.h3`

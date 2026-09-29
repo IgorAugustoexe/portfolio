@@ -21,6 +21,7 @@ pnpm-debug.log*
 
 # environment
 .env*
+RULES.md
 
 # typescript
 *.tsbuildinfo

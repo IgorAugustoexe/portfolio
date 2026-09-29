@@ -44,7 +44,6 @@ export const theme = {
     gradients: {
         accent: "linear-gradient(135deg, #ffe4a2 0%, #f5bd69 100%)",
         surface: "linear-gradient(145deg, rgba(37, 40, 45, 0.92) 0%, rgba(24, 27, 32, 0.94) 100%)",
-        planet: "radial-gradient(circle at 70% 32%, #2b2d30 0%, #171b21 32%, #0c1015 72%)",
         starfield: "radial-gradient(circle at 50% 35%, #10151b 0%, #0b0e12 54%, #080a0d 100%)"
     },
     fonts: {
@@ -90,10 +89,10 @@ export const theme = {
         slow: "400ms ease"
     },
     layout: {
-        maxWidth: "1520px",
+        maxWidth: "1760px",
         desktopCardMinHeight: "640px",
         viewportSpacingVertical: "clamp(1rem, 4dvh, 3rem)",
-        viewportSpacingHorizontal: "clamp(1rem, 3vw, 2rem)"
+        viewportSpacingHorizontal: "clamp(1rem, 1.5vw, 1.5rem)"
     },
     breakpoints: {
         mobile: "480px",

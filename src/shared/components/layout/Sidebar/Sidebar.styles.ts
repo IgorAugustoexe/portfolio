@@ -15,43 +15,54 @@ export const Container = styled.aside`
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
         position: static;
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        align-items: center;
+        gap: ${({ theme }) => theme.spacing.md};
         width: 100%;
         min-height: 0;
         padding: ${({ theme }) => theme.spacing.lg} 0;
         border-right: 0;
         border-bottom: 1px solid ${({ theme }) => theme.colors.border.subtle};
     }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+        gap: ${({ theme }) => theme.spacing.sm};
+    }
 `
 
 export const ProfileHeader = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
+    align-items: center;
+    width: calc(100% + ${({ theme }) => theme.spacing.lg});
+    text-align: center;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-        flex-direction: row;
-        align-items: center;
         width: 100%;
-
-        > div {
-            min-width: 0;
-        }
     }
 `
 
 export const Avatar = styled(Image)`
-    width: 112px;
-    height: 112px;
+    width: 148px;
+    height: 148px;
     margin-bottom: ${({ theme }) => theme.spacing.lg};
     object-fit: cover;
     background: ${({ theme }) => theme.gradients.surface};
     border-radius: ${({ theme }) => theme.radius.md};
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-        width: 64px;
-        height: 64px;
-        margin: 0 ${({ theme }) => theme.spacing.md} 0 0;
+        width: 128px;
+        height: 128px;
+        margin-bottom: ${({ theme }) => theme.spacing.md};
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        width: min(100%, 112px);
+        height: auto;
+        aspect-ratio: 1;
     }
 `
 
@@ -81,8 +92,8 @@ export const MobileLanguageSlot = styled.div`
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
         display: flex;
-        margin-left: auto;
-        padding-left: ${({ theme }) => theme.spacing.sm};
+        justify-content: flex-end;
+        margin-bottom: ${({ theme }) => theme.spacing.md};
     }
 `
 
@@ -92,35 +103,15 @@ export const Details = styled.div`
     border-top: 1px solid ${({ theme }) => theme.colors.border.subtle};
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+        min-width: 0;
         margin-top: 0;
-        padding-top: 0;
+        padding: 0 0 0 ${({ theme }) => theme.spacing.md};
         border-top: 0;
+        border-left: 1px solid ${({ theme }) => theme.colors.border.subtle};
     }
-`
 
-export const DetailsToggle = styled.button`
-    display: none;
-    width: 100%;
-    padding-top: ${({ theme }) => theme.spacing.md};
-    color: ${({ theme }) => theme.colors.accent.primary};
-    font-size: ${({ theme }) => theme.fonts.size.sm};
-    text-align: left;
-    background: transparent;
-    cursor: pointer;
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-        display: block;
-        padding-top: ${({ theme }) => theme.spacing.md};
-    }
-`
-
-export const DetailsContent = styled.div<{ $open: boolean }>`
-    display: block;
-    padding-top: 0;
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-        display: ${({ $open }) => ($open ? "block" : "none")};
-        padding-top: ${({ theme }) => theme.spacing.lg};
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        padding-left: ${({ theme }) => theme.spacing.sm};
     }
 `
 
@@ -134,6 +125,15 @@ export const ContactItem = styled.li`
     grid-template-columns: 36px minmax(0, 1fr);
     align-items: center;
     gap: ${({ theme }) => theme.spacing.md};
+
+    > div {
+        min-width: 0;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+        grid-template-columns: 32px minmax(0, 1fr);
+        gap: ${({ theme }) => theme.spacing.sm};
+    }
 `
 
 export const IconBox = styled.span`
@@ -151,6 +151,11 @@ export const IconBox = styled.span`
         width: 16px;
         height: 16px;
     }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+        width: 32px;
+        height: 32px;
+    }
 `
 
 export const ContactLabel = styled.span`
@@ -162,13 +167,23 @@ export const ContactLabel = styled.span`
 
 export const ContactValue = styled.span`
     display: block;
+    width: 100%;
+    overflow: hidden;
     color: ${({ theme }) => theme.colors.text.secondary};
     font-size: ${({ theme }) => theme.fonts.size.sm};
-    overflow-wrap: anywhere;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     transition: color ${({ theme }) => theme.transitions.fast};
 
     a:hover & {
         color: ${({ theme }) => theme.colors.accent.primary};
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+        overflow: visible;
+        overflow-wrap: anywhere;
+        text-overflow: clip;
+        white-space: normal;
     }
 `
 

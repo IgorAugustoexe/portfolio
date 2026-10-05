@@ -12,10 +12,10 @@ export const projects: Project[] = [
     title: "Personal Portfolio",
     category: "web",
     technologies: [
-      { name: "React", color: "#61dafb" },
-      { name: "Next.js", color: "#fafafa" },
-      { name: "TypeScript", color: "#3178c6" },
-      { name: "Styled Components", color: "#db7093" },
+      { name: "React" },
+      { name: "Next.js" },
+      { name: "TypeScript" },
+      { name: "Styled Components" },
     ],
     images: [
       {
@@ -57,9 +57,9 @@ export const projects: Project[] = [
     title: "Task Manager",
     category: "academic",
     technologies: [
-      { name: "React", color: "#61dafb" },
-      { name: "TypeScript", color: "#3178c6" },
-      { name: "Local Storage", color: "#ffdb70" },
+      { name: "React" },
+      { name: "TypeScript" },
+      { name: "Local Storage" },
     ],
     images: [
       {

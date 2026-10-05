@@ -1,6 +1,7 @@
 "use client"
 
 import { aboutContent } from "@/app/pages/about/data/about.mock"
+import { ProjectCard } from "@/app/pages/projects/components/ProjectCard"
 import { projects } from "@/app/pages/projects/data/projects.mock"
 import { AppIcon } from "@/shared/components/ui/AppIcon/AppIcon"
 import { PagePanel } from "@/shared/components/ui/PagePanel/PagePanel"
@@ -10,13 +11,8 @@ import { getLocalizedText } from "@/shared/i18n/getLocalizedText"
 import {
     AboutIntro,
     AccentLine,
-    FeaturedCard,
-    FeaturedCopy,
     FeaturedGrid,
-    FeaturedImage,
-    FeaturedImageFrame,
     FeaturedLink,
-    FeaturedOverlay,
     FeaturedSection,
     SectionHeading,
     SectionIntro,
@@ -74,24 +70,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
                 <FeaturedGrid>
                     {projects.slice(0, 2).map((project) => (
                         <li key={project.slug}>
-                            <FeaturedCard href={`/${locale}/projects/${project.slug}`}>
-                                <FeaturedImageFrame>
-                                    <FeaturedImage
-                                        src={project.images[0].src}
-                                        alt={getLocalizedText(project.images[0].alt, locale)}
-                                        width={720}
-                                        height={440}
-                                    />
-                                    <FeaturedOverlay aria-hidden="true">
-                                        <AppIcon name="view" />
-                                        <span>{dictionary.projects.details}</span>
-                                    </FeaturedOverlay>
-                                </FeaturedImageFrame>
-                                <FeaturedCopy>
-                                    <strong>{project.title}</strong>
-                                    <span>{project.content[locale].summary}</span>
-                                </FeaturedCopy>
-                            </FeaturedCard>
+                            <ProjectCard project={project} locale={locale} layout="vertical" compact titleAs="h3" />
                         </li>
                     ))}
                 </FeaturedGrid>

@@ -19,6 +19,24 @@ export const education: TimelineItem[] = [
       en: "Education focused on systems development, software architecture and engineering practices.",
     },
   },
+  {
+    title: { pt: "Engenharia de Dale", en: "Software Engineering" },
+    organization: "Universidade Exemplo",
+    period: "2020 — 2024",
+    description: {
+      pt: "Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia.",
+      en: "Education focused on systems development, software architecture and engineering practices.",
+    },
+  },
+  {
+    title: { pt: "Engenharia de Produção", en: "Software Engineering" },
+    organization: "Universidade Exemplo",
+    period: "2020 — 2024",
+    description: {
+      pt: "Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia. Formação voltada para desenvolvimento de sistemas, arquitetura de software e práticas de engenharia.",
+      en: "Education focused on systems development, software architecture and engineering practices.",
+    },
+  },
 ];
 
 export const experience: TimelineItem[] = [

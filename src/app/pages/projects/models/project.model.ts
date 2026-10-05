@@ -6,7 +6,6 @@ export type ProjectFilter = "all" | ProjectCategory
 
 export interface Technology {
     name: string
-    color?: string
 }
 
 export interface ProjectImage {

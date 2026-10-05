@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 export const Navigation = styled.nav`
     position: sticky;
@@ -70,7 +70,7 @@ export const NavigationList = styled.ul`
     }
 `
 
-export const NavigationLink = styled(Link)<{ $active: boolean }>`
+const navigationItemStyles = css<{ $active: boolean }>`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,21 +84,28 @@ export const NavigationLink = styled(Link)<{ $active: boolean }>`
     white-space: nowrap;
     transition: color ${({ theme }) => theme.transitions.fast};
 
-    &:hover {
-        color: ${({ theme }) => theme.colors.accent.primary};
+    &:hover:not([aria-current="page"]) {
+        color: ${({ theme }) => theme.colors.text.muted};
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
         height: 68px;
         gap: 0.1rem;
         border-radius: ${({ theme }) => theme.radius.md};
-        background: ${({ $active }) => $active ? "rgba(255, 219, 134, 0.08)" : "transparent"};
         font-size: ${({ theme }) => theme.fonts.size.xs};
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
         padding: 0 ${({ theme }) => theme.spacing.xs};
     }
+`
+
+export const NavigationLink = styled(Link)<{ $active: boolean }>`
+    ${navigationItemStyles}
+`
+
+export const CurrentNavigationItem = styled.span<{ $active: boolean }>`
+    ${navigationItemStyles}
 `
 
 export const NavIcon = styled.span`

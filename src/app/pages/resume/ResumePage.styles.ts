@@ -42,10 +42,8 @@ export const TimelineTitleIcon = styled.span`
   height: 48px;
   place-items: center;
   color: ${({ theme }) => theme.colors.accent.primary};
-  background:
-    linear-gradient(rgba(255, 219, 134, 0.04), rgba(255, 219, 134, 0.04)),
-    ${({ theme }) => theme.colors.background.page};
-  border: 1px solid rgba(255, 219, 134, 0.2);
+  background: ${({ theme }) => theme.gradients.iconTile};
+  border: 1px solid ${({ theme }) => theme.colors.border.iconTile};
   border-radius: ${({ theme }) => theme.radius.md};
 
   svg {

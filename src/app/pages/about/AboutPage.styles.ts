@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -84,8 +83,8 @@ export const ServiceIcon = styled.span`
   height: 48px;
   place-items: center;
   color: ${({ theme }) => theme.colors.accent.primary};
-  background: rgba(255, 219, 134, 0.04);
-  border: 1px solid rgba(255, 219, 134, 0.2);
+  background: ${({ theme }) => theme.gradients.iconTile};
+  border: 1px solid ${({ theme }) => theme.colors.border.iconTile};
   border-radius: ${({ theme }) => theme.radius.md};
 
   svg {
@@ -155,83 +154,7 @@ export const FeaturedLink = styled(Link)`
 
 export const FeaturedGrid = styled.ul`
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, ${({ theme }) => theme.layout.featuredCardMinWidth}), 1fr));
+  grid-auto-rows: 1fr;
   gap: ${({ theme }) => theme.spacing.lg};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-export const FeaturedCard = styled(Link)`
-  display: block;
-  height: 100%;
-  overflow: hidden;
-  background: ${({ theme }) => theme.gradients.surface};
-  border: 1px solid ${({ theme }) => theme.colors.border.subtle};
-  border-radius: ${({ theme }) => theme.radius.md};
-  transition: border-color ${({ theme }) => theme.transitions.normal};
-
-  &:hover {
-    border-color: ${({ theme }) => theme.colors.border.highlighted};
-  }
-`;
-
-export const FeaturedImageFrame = styled.div`
-  position: relative;
-  overflow: hidden;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border.subtle};
-`;
-
-export const FeaturedImage = styled(Image)`
-  width: 100%;
-  height: clamp(160px, 20vw, 245px);
-  object-fit: cover;
-  transition: transform ${({ theme }) => theme.transitions.slow};
-
-  ${FeaturedCard}:hover &,
-    ${FeaturedCard}:focus-visible & {
-    transform: scale(1.08);
-  }
-`;
-
-export const FeaturedOverlay = styled.span`
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: ${({ theme }) => theme.spacing.sm};
-  color: ${({ theme }) => theme.colors.text.primary};
-  font-size: ${({ theme }) => theme.fonts.size.sm};
-  font-weight: ${({ theme }) => theme.fonts.weight.medium};
-  background: rgba(8, 10, 13, 0.56);
-  opacity: 0;
-  transition: opacity ${({ theme }) => theme.transitions.normal};
-
-  svg {
-    width: 24px;
-    height: 24px;
-    color: ${({ theme }) => theme.colors.accent.primary};
-  }
-
-  ${FeaturedCard}:hover &,
-    ${FeaturedCard}:focus-visible & {
-    opacity: 1;
-  }
-`;
-
-export const FeaturedCopy = styled.div`
-  display: grid;
-  gap: ${({ theme }) => theme.spacing.xs};
-  padding: ${({ theme }) => theme.spacing.md};
-
-  strong {
-    font-weight: ${({ theme }) => theme.fonts.weight.semibold};
-  }
-  span {
-    color: ${({ theme }) => theme.colors.text.muted};
-    font-size: ${({ theme }) => theme.fonts.size.sm};
-  }
 `;

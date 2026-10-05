@@ -1,25 +1,19 @@
 "use client"
 
 import { useState } from "react"
+import { ProjectCard } from "@/app/pages/projects/components/ProjectCard"
 import { projects } from "@/app/pages/projects/data/projects.mock"
 import type { ProjectFilter } from "@/app/pages/projects/models/project.model"
 import { PagePanel } from "@/shared/components/ui/PagePanel/PagePanel"
 import type { Locale } from "@/shared/i18n/config"
 import { getDictionary } from "@/shared/i18n/dictionaries"
-import { getLocalizedText } from "@/shared/i18n/getLocalizedText"
 import {
-    DetailsLabel,
     EmptyState,
     FilterButton,
     FilterList,
     FilterSelect,
     FilterSelectLabel,
-    ProjectCategory,
     ProjectGrid,
-    ProjectImage,
-    ProjectLink,
-    ProjectSummary,
-    ProjectTitle
 } from "./ProjectsPage.styles"
 
 const projectFilters: ProjectFilter[] = ["all", "mobile", "web", "academic"]
@@ -40,6 +34,7 @@ export function ProjectsPage({ locale }: { locale: Locale }) {
                             type="button"
                             $active={selectedFilter === filter}
                             aria-pressed={selectedFilter === filter}
+                            disabled={selectedFilter === filter}
                             onClick={() => setSelectedFilter(filter)}
                         >
                             {dictionary.filters[filter]}
@@ -67,18 +62,7 @@ export function ProjectsPage({ locale }: { locale: Locale }) {
                 <ProjectGrid>
                     {filteredProjects.map((project) => (
                         <li key={project.slug}>
-                            <ProjectLink href={`/${locale}/projects/${project.slug}`}>
-                                <ProjectImage
-                                    src={project.images[0].src}
-                                    alt={getLocalizedText(project.images[0].alt, locale)}
-                                    width={720}
-                                    height={440}
-                                />
-                                <ProjectTitle>{project.title}</ProjectTitle>
-                                <ProjectCategory>{dictionary.filters[project.category]}</ProjectCategory>
-                                <ProjectSummary>{project.content[locale].summary}</ProjectSummary>
-                                <DetailsLabel>{dictionary.details} →</DetailsLabel>
-                            </ProjectLink>
+                            <ProjectCard project={project} locale={locale} />
                         </li>
                     ))}
                 </ProjectGrid>

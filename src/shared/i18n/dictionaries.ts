@@ -14,15 +14,23 @@ const dictionaries = {
     about: {
       title: "Sobre",
       servicesTitle: "O que eu faço",
-      featuredTitle: "Projetos em destaque",
-      featuredDescription: "Alguns projetos que representam minha experiência e meus interesses.",
-      viewAll: "Ver todos os projetos",
+      skillsTitle: "Minhas habilidades",
+      skillLevels: {
+        basic: "Básico",
+        intermediate: "Intermediário",
+        advanced: "Avançado",
+      },
+      skillLevelsCompact: {
+        basic: "Bás.",
+        intermediate: "Interm.",
+        advanced: "Avanç.",
+      },
     },
     resume: {
       title: "Resumo",
       educationTitle: "Formação",
       experienceTitle: "Experiência",
-      skillsTitle: "Minhas habilidades",
+      languageSkillsTitle: "Habilidades de Linguagem",
     },
     projects: {
       title: "Projetos",
@@ -56,15 +64,23 @@ const dictionaries = {
     about: {
       title: "About",
       servicesTitle: "What I do",
-      featuredTitle: "Featured projects",
-      featuredDescription: "A few projects that reflect my experience and interests.",
-      viewAll: "View all projects",
+      skillsTitle: "My skills",
+      skillLevels: {
+        basic: "Basic",
+        intermediate: "Intermediate",
+        advanced: "Advanced",
+      },
+      skillLevelsCompact: {
+        basic: "Basic",
+        intermediate: "Interm.",
+        advanced: "Adv.",
+      },
     },
     resume: {
       title: "Resume",
       educationTitle: "Education",
       experienceTitle: "Experience",
-      skillsTitle: "My skills",
+      languageSkillsTitle: "Language skills",
     },
     projects: {
       title: "Projects",

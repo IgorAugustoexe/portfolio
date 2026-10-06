@@ -11,6 +11,7 @@ export interface Technology {
 export interface ProjectImage {
     src: StaticImageData
     alt: LocalizedText
+    thumbnailScale?: number
 }
 
 export interface ProjectContent {
@@ -24,6 +25,8 @@ export interface Project {
     slug: string
     title: string
     category: ProjectCategory
+    logo?: StaticImageData
+    cover?: ProjectImage
     technologies: Technology[]
     images: ProjectImage[]
     content: Record<"pt" | "en", ProjectContent>

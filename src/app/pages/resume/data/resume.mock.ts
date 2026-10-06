@@ -1,4 +1,4 @@
-import type { Skill, TimelineItem } from "../models/resume.model";
+import type { LanguageProfile, TimelineItem } from "../models/resume.model";
 
 export const education: TimelineItem[] = [
   {
@@ -69,11 +69,57 @@ export const experience: TimelineItem[] = [
   },
 ];
 
-export const skills: Skill[] = [
-  { name: "React", level: 88 },
-  { name: "TypeScript", level: 82 },
-  { name: "Next.js", level: 76 },
-  { name: "Styled Components", level: 80 },
+export const languageProfiles: LanguageProfile[] = [
+  {
+    id: "english",
+    name: { pt: "Inglês", en: "English" },
+    subtitle: {
+      pt: "Habilidades e uso profissional",
+      en: "Skills and professional use",
+    },
+    skills: [
+      {
+        id: "reading",
+        icon: "reading",
+        name: { pt: "Leitura", en: "Reading" },
+        level: "B2",
+        description: {
+          pt: "Documentação técnica, artigos e tutoriais. Documentação técnica, artigos e tutoriais. Documentação técnica, artigos e tutoriais. Documentação técnica, artigos e tutoriais. Documentação técnica, artigos e tutoriais. Documentação técnica, artigos e tutoriais. ",
+          en: "Technical documentation, articles and tutorials.",
+        },
+      },
+      {
+        id: "writing",
+        icon: "writing",
+        name: { pt: "Escrita", en: "Writing" },
+        level: "B2",
+        description: {
+          pt: "E-mails, mensagens e discussões com equipes.",
+          en: "Emails, messages and discussions with teams.",
+        },
+      },
+      {
+        id: "listening",
+        icon: "listening",
+        name: { pt: "Compreensão oral", en: "Listening" },
+        level: "B2",
+        description: {
+          pt: "Vídeos, cursos e conteúdo técnico em inglês.",
+          en: "Videos, courses and technical content in English.",
+        },
+      },
+      {
+        id: "conversation",
+        icon: "conversation",
+        name: { pt: "Conversação", en: "Speaking" },
+        level: "B2",
+        description: {
+          pt: "Conversação em desenvolvimento no contexto profissional.",
+          en: "Developing conversational skills in a professional context.",
+        },
+      },
+    ],
+  },
 ];
 
 export const scrollTestContent = {

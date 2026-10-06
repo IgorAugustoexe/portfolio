@@ -1,6 +1,7 @@
 "use client";
 
 import styled from "styled-components";
+import { IconTile } from "@/shared/components/ui/IconTile/IconTile";
 
 export const ResumeGrid = styled.div`
   display: grid;
@@ -33,28 +34,9 @@ export const TimelineSectionTitle = styled(SectionTitle)`
   }
 `;
 
-export const TimelineTitleIcon = styled.span`
+export const TimelineTitleIcon = styled(IconTile)`
   position: relative;
   z-index: 2;
-  display: grid;
-  flex: 0 0 auto;
-  width: 48px;
-  height: 48px;
-  place-items: center;
-  color: ${({ theme }) => theme.colors.accent.primary};
-  background: ${({ theme }) => theme.gradients.iconTile};
-  border: 1px solid ${({ theme }) => theme.colors.border.iconTile};
-  border-radius: ${({ theme }) => theme.radius.md};
-
-  svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    width: 40px;
-    height: 40px;
-  }
 `;
 
 export const Timeline = styled.ol`
@@ -130,32 +112,75 @@ export const EntryDescription = styled.p`
   color: ${({ theme }) => theme.colors.text.muted};
 `;
 
-export const SkillsCard = styled.div`
+export const LanguageHeader = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+`;
+
+export const LanguageSubtitle = styled.p`
+  margin-top: ${({ theme }) => theme.spacing.sm};
+  color: ${({ theme }) => theme.colors.text.muted};
+  font-size: ${({ theme }) => theme.fonts.size.md};
+`;
+
+export const LanguageSkillList = styled.ul`
   display: grid;
-  gap: ${({ theme }) => theme.spacing.lg};
-  padding: clamp(1rem, 3vw, 2rem);
+  gap: ${({ theme }) => theme.spacing.md};
+`;
+
+export const LanguageSkillRow = styled.li`
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  grid-template-areas:
+    "icon title level"
+    "icon description level";
+  align-items: center;
+  column-gap: ${({ theme }) => theme.spacing.md};
+  row-gap: ${({ theme }) => theme.spacing.xs};
+  min-width: 0;
+  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
   background: ${({ theme }) => theme.gradients.surface};
   border: 1px solid ${({ theme }) => theme.colors.border.subtle};
   border-radius: ${({ theme }) => theme.radius.md};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    grid-template-areas:
+      "icon title level"
+      "description description description";
+    gap: ${({ theme }) => theme.spacing.sm};
+    padding: ${({ theme }) => theme.spacing.md};
+  }
 `;
 
-export const SkillHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
+export const LanguageSkillIcon = styled(IconTile)`
+  grid-area: icon;
+`;
+
+export const LanguageLevelBadge = styled.span`
+  grid-area: level;
+  display: grid;
+  min-width: 44px;
+  padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.sm};
+  place-items: center;
+  color: ${({ theme }) => theme.colors.accent.primary};
+  background: ${({ theme }) => theme.gradients.iconTile};
+  border: 1px solid ${({ theme }) => theme.colors.border.iconTile};
+  border-radius: ${({ theme }) => theme.radius.sm};
   font-size: ${({ theme }) => theme.fonts.size.sm};
+  font-weight: ${({ theme }) => theme.fonts.weight.semibold};
 `;
 
-export const SkillTrack = styled.div`
-  height: 7px;
-  overflow: hidden;
-  background: ${({ theme }) => theme.colors.background.soft};
-  border-radius: ${({ theme }) => theme.radius.round};
+export const LanguageTitle = styled.h3`
+  grid-area: title;
+  min-width: 0;
+  font-size: ${({ theme }) => theme.fonts.size.md};
+  font-weight: ${({ theme }) => theme.fonts.weight.semibold};
 `;
 
-export const SkillFill = styled.div<{ $level: number }>`
-  width: ${({ $level }) => `${$level}%`};
-  height: 100%;
-  background: ${({ theme }) => theme.gradients.accent};
-  border-radius: inherit;
+export const LanguageDescription = styled.p`
+  grid-area: description;
+  min-width: 0;
+  color: ${({ theme }) => theme.colors.text.muted};
+  font-size: ${({ theme }) => theme.fonts.size.md};
+  line-height: 1.6;
 `;

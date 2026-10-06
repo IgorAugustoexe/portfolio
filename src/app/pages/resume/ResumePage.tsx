@@ -1,7 +1,6 @@
 "use client";
 
-import { education, experience, skills } from "@/app/pages/resume/data/resume.mock";
-import { AppIcon } from "@/shared/components/ui/AppIcon/AppIcon";
+import { education, experience, languageProfiles } from "@/app/pages/resume/data/resume.mock";
 import { PagePanel } from "@/shared/components/ui/PagePanel/PagePanel";
 import type { Locale } from "@/shared/i18n/config";
 import { getDictionary } from "@/shared/i18n/dictionaries";
@@ -12,16 +11,20 @@ import {
   EntryTitle,
   ResumeGrid,
   Section,
-  SkillFill,
-  SkillHeader,
-  SkillsCard,
-  SkillTrack,
+  LanguageHeader,
+  LanguageSubtitle,
+  LanguageSkillList,
+  LanguageSkillRow,
+  LanguageSkillIcon,
+  LanguageLevelBadge,
+  LanguageDescription,
+  LanguageTitle,
   Timeline,
   TimelineEntry,
   TimelineSectionTitle,
   TimelineTitleIcon,
 } from "./ResumePage.styles";
-import { AccentLine, SectionHeading, SectionTitleRow } from "../about/AboutPage.styles";
+import { AccentLine, SectionHeading } from "../about/AboutPage.styles";
 
 export function ResumePage({ locale }: { locale: Locale }) {
   const dictionary = getDictionary(locale).resume;
@@ -45,9 +48,7 @@ export function ResumePage({ locale }: { locale: Locale }) {
       <ResumeGrid>
         <Section>
           <TimelineSectionTitle>
-            <TimelineTitleIcon aria-hidden="true">
-              <AppIcon name="code" />
-            </TimelineTitleIcon>
+            <TimelineTitleIcon name="code" />
             {dictionary.educationTitle}
           </TimelineSectionTitle>
           {renderTimeline(education)}
@@ -55,32 +56,32 @@ export function ResumePage({ locale }: { locale: Locale }) {
 
         <Section>
           <TimelineSectionTitle>
-            <TimelineTitleIcon aria-hidden="true">
-              <AppIcon name="code" />
-            </TimelineTitleIcon>
+            <TimelineTitleIcon name="code" />
             {dictionary.experienceTitle}
           </TimelineSectionTitle>
           {renderTimeline(experience)}
         </Section>
 
-        <Section>
-          <SectionTitleRow>
-            <SectionHeading><AccentLine />{dictionary.skillsTitle}</SectionHeading>
-          </SectionTitleRow>
-          <SkillsCard>
-            {skills.map((skill) => (
-              <div key={skill.name}>
-                <SkillHeader>
-                  <span>{skill.name}</span>
-                  <span>{skill.level}%</span>
-                </SkillHeader>
-                <SkillTrack aria-label={`${skill.name}: ${skill.level}%`}>
-                  <SkillFill $level={skill.level} />
-                </SkillTrack>
-              </div>
-            ))}
-          </SkillsCard>
-        </Section>
+        {languageProfiles.map((language) => (
+          <Section key={language.id} aria-labelledby={`language-${language.id}-heading`}>
+            <LanguageHeader>
+              <SectionHeading id={`language-${language.id}-heading`}>
+                <AccentLine />{getLocalizedText(language.name, locale)}
+              </SectionHeading>
+              <LanguageSubtitle>{getLocalizedText(language.subtitle, locale)}</LanguageSubtitle>
+            </LanguageHeader>
+            <LanguageSkillList aria-label={dictionary.languageSkillsTitle}>
+              {language.skills.map((skill) => (
+                <LanguageSkillRow key={skill.id}>
+                  <LanguageSkillIcon name={skill.icon} />
+                  <LanguageTitle>{getLocalizedText(skill.name, locale)}</LanguageTitle>
+                  <LanguageDescription>{getLocalizedText(skill.description, locale)}</LanguageDescription>
+                  <LanguageLevelBadge>{skill.level}</LanguageLevelBadge>
+                </LanguageSkillRow>
+              ))}
+            </LanguageSkillList>
+          </Section>
+        ))}
       </ResumeGrid>
     </PagePanel>
   );

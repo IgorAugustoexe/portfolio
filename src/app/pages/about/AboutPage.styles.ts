@@ -1,7 +1,13 @@
 "use client";
 
-import Link from "next/link";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import type { SkillLevel } from "./data/skills.mock";
+
+const skillWidths: Record<SkillLevel, string> = {
+  basic: "0%",
+  intermediate: "50%",
+  advanced: "100%",
+};
 
 export const AccentLine = styled.span`
   display: inline-block;
@@ -77,27 +83,6 @@ export const ServiceCard = styled.li`
   }
 `;
 
-export const ServiceIcon = styled.span`
-  display: grid;
-  width: 48px;
-  height: 48px;
-  place-items: center;
-  color: ${({ theme }) => theme.colors.accent.primary};
-  background: ${({ theme }) => theme.gradients.iconTile};
-  border: 1px solid ${({ theme }) => theme.colors.border.iconTile};
-  border-radius: ${({ theme }) => theme.radius.md};
-
-  svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    width: 40px;
-    height: 40px;
-  }
-`;
-
 export const ServiceTitle = styled.h3`
   font-size: ${({ theme }) => theme.fonts.size.md};
   font-weight: ${({ theme }) => theme.fonts.weight.semibold};
@@ -115,46 +100,137 @@ export const TechnologyList = styled.ul`
   flex-wrap: wrap;
   gap: ${({ theme }) => theme.spacing.sm};
   margin-top: ${({ theme }) => theme.spacing.md};
-
-  li {
-    padding: 0.15rem 0.55rem;
-    color: ${({ theme }) => theme.colors.text.secondary};
-    border: 1px solid ${({ theme }) => theme.colors.border.default};
-    border-radius: ${({ theme }) => theme.radius.round};
-    font-size: ${({ theme }) => theme.fonts.size.xs};
-  }
 `;
 
-export const FeaturedSection = styled.section`
+export const SkillsSection = styled.section`
   margin-top: clamp(3rem, 6vw, 5rem);
   padding-top: ${({ theme }) => theme.spacing.xl};
   border-top: 1px solid ${({ theme }) => theme.colors.border.subtle};
 `;
 
-export const SectionIntro = styled.p`
-  max-width: 55ch;
-  margin-top: ${({ theme }) => theme.spacing.sm};
-  color: ${({ theme }) => theme.colors.text.muted};
-  font-size: ${({ theme }) => theme.fonts.size.sm};
-`;
+export const SkillsCard = styled.div`
+  --skill-label-width: clamp(120px, 14vw, 180px);
+  --skill-marker-size: 10px;
 
-export const FeaturedLink = styled(Link)`
-  flex: 0 0 auto;
-  display: inline-flex;
-  gap: ${({ theme }) => theme.spacing.sm};
-  min-height: 44px;
-  align-items: center;
-  color: ${({ theme }) => theme.colors.accent.primary};
-  font-size: ${({ theme }) => theme.fonts.size.sm};
+  display: grid;
+  gap: ${({ theme }) => theme.spacing.xl};
+  padding: clamp(1rem, 3vw, 2rem);
+  background: ${({ theme }) => theme.gradients.surface};
+  border: 1px solid ${({ theme }) => theme.colors.border.subtle};
+  border-radius: ${({ theme }) => theme.radius.md};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    display: none;
+    --skill-label-width: 112px;
+    column-gap: ${({ theme }) => theme.spacing.sm};
   }
 `;
 
-export const FeaturedGrid = styled.ul`
+export const SkillScale = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, ${({ theme }) => theme.layout.featuredCardMinWidth}), 1fr));
-  grid-auto-rows: 1fr;
-  gap: ${({ theme }) => theme.spacing.lg};
+  grid-template-columns: var(--skill-label-width) minmax(0, 1fr);
+  column-gap: ${({ theme }) => theme.spacing.md};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    column-gap: ${({ theme }) => theme.spacing.sm};
+  }
+`;
+
+export const SkillScaleLabels = styled.div`
+  grid-column: 2;
+  position: relative;
+  min-height: 1.5em;
+  color: ${({ theme }) => theme.colors.text.secondary};
+  font-size: ${({ theme }) => theme.fonts.size.sm};
+
+  > span {
+    position: absolute;
+    top: 0;
+    white-space: nowrap;
+  }
+
+  > span:first-child { left: 0; }
+  > span:nth-child(2) { left: 50%; transform: translateX(-50%); }
+  > span:last-child { right: 0; }
+
+  .compact-label { display: none; }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: ${({ theme }) => theme.fonts.size.xs};
+    .full-label { display: none; }
+    .compact-label { display: inline; }
+  }
+`;
+
+export const SkillList = styled.ul`
+  display: grid;
+  gap: ${({ theme }) => theme.spacing.xl};
+`;
+
+export const SkillRow = styled.li`
+  display: grid;
+  grid-template-columns: var(--skill-label-width) minmax(0, 1fr);
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.md};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    gap: ${({ theme }) => theme.spacing.sm};
+  }
+`;
+
+export const SkillName = styled.span`
+  min-width: 0;
+  font-size: ${({ theme }) => theme.fonts.size.md};
+  font-weight: ${({ theme }) => theme.fonts.weight.medium};
+  text-align: left;
+`;
+
+export const SkillTrack = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: ${({ theme }) => theme.spacing.lg};
+`;
+
+export const SkillLine = styled.div`
+  position: absolute;
+  left: calc(var(--skill-marker-size) / 2);
+  right: calc(var(--skill-marker-size) / 2);
+  height: 2px;
+  background: ${({ theme }) => theme.colors.border.default};
+`;
+
+export const SkillFill = styled.div<{ $level: SkillLevel; $animate: boolean }>`
+  width: ${({ $level, $animate }) => $animate ? skillWidths[$level] : "0%"};
+  height: 100%;
+  background: ${({ theme }) => theme.colors.accent.primary};
+  /* Preserve the explicitly configured entrance timing over the global motion reduction. */
+  transition: width ${({ theme }) => theme.transitions.skillFill} !important;
+`;
+
+export const SkillMarker = styled.span<{
+  $active: boolean;
+  $current: boolean;
+  $animate: boolean;
+  $delay: number;
+}>`
+  position: relative;
+  width: var(--skill-marker-size);
+  height: var(--skill-marker-size);
+  flex-shrink: 0;
+  border-radius: ${({ theme }) => theme.radius.round};
+  background: ${({ theme }) => theme.colors.border.projectHover};
+
+  ${({ $active, $current, $animate, $delay, theme }) => $active && css`
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: ${theme.colors.accent.primary};
+      box-shadow: ${$current ? `0 0 0 5px ${theme.colors.border.default}` : "none"};
+      opacity: ${$animate ? 1 : 0};
+      transition: opacity ${theme.transitions.fast} ${$animate ? $delay : 0}ms !important;
+    }
+  `}
 `;

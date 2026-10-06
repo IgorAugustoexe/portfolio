@@ -1,7 +1,7 @@
 import type { Project } from "../models/project.model";
-import portfolioImage01 from "@/assets/images/projects/portfolio/01.jpg";
-import portfolioImage02 from "@/assets/images/projects/portfolio/02.png";
-import portfolioImage03 from "@/assets/images/projects/portfolio/03.jpg";
+import isabelaFloresLogo from "@/assets/images/projects/IsabelaFlores/isaLogo.png";
+import isabelaFloresCover from "@/assets/images/projects/IsabelaFlores/cover.png";
+import { isabelaFloresImages } from "./isabela-flores.images";
 import taskManagerImage01 from "@/assets/images/projects/task-manager/01.png";
 import taskManagerImage02 from "@/assets/images/projects/task-manager/02.png";
 import taskManagerImage03 from "@/assets/images/projects/task-manager/03.png";
@@ -9,28 +9,18 @@ import taskManagerImage03 from "@/assets/images/projects/task-manager/03.png";
 export const projects: Project[] = [
   {
     slug: "personal-portfolio",
-    title: "Personal Portfolio",
+    title: "Isabela Flores",
     category: "web",
-    technologies: [
-      { name: "React" },
-      { name: "Next.js" },
-      { name: "TypeScript" },
-      { name: "Styled Components" },
-    ],
-    images: [
-      {
-        src: portfolioImage01,
-        alt: { pt: "Visão inicial do portfólio", en: "Portfolio initial view" },
+    logo: isabelaFloresLogo,
+    cover: {
+      src: isabelaFloresCover,
+      alt: {
+        pt: "Apresentação do app Isabela Flores com a logo e telas de início, catálogo, cesta e compras",
+        en: "Isabela Flores app presentation featuring its logo and home, catalog, basket and purchases screens",
       },
-      {
-        src: portfolioImage02,
-        alt: { pt: "Página interna do portfólio", en: "Portfolio internal page" },
-      },
-      {
-        src: portfolioImage03,
-        alt: { pt: "Grade de projetos do portfólio", en: "Portfolio project grid" },
-      },
-    ],
+    },
+    technologies: [{ name: "React" }, { name: "Next.js" }, { name: "TypeScript" }, { name: "Styled Components" }],
+    images: isabelaFloresImages,
     content: {
       pt: {
         summary: "Portfólio pessoal bilíngue, responsivo e orientado por dados locais.",
@@ -56,11 +46,7 @@ export const projects: Project[] = [
     slug: "task-manager",
     title: "Task Manager",
     category: "academic",
-    technologies: [
-      { name: "React" },
-      { name: "TypeScript" },
-      { name: "Local Storage" },
-    ],
+    technologies: [{ name: "React" }, { name: "TypeScript" }, { name: "Local Storage" }],
     images: [
       {
         src: taskManagerImage01,

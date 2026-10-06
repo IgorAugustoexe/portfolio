@@ -1,3 +1,5 @@
+const skillFillDuration = 1000;
+
 export const theme = {
   colors: {
     background: {
@@ -82,6 +84,25 @@ export const theme = {
     lg: "10px",
     projectImage: "16px",
     round: "10px",
+    circle: "50%",
+  },
+  iconTile: {
+    standard: { size: "48px", mobileSize: "40px", iconSize: "20px" },
+    large: { size: "60px", mobileSize: "56px", iconSize: "24px" },
+  },
+  projectLogoStamp: {
+    size: "152px",
+    mobileSize: "80px",
+    imageSize: "85%",
+  },
+  projectCarousel: {
+    portraitHeight: "clamp(36rem, 62vh, 56rem)",
+    indicatorsPerRow: 20,
+    indicatorSize: "12px",
+    indicatorHaloScale: 2,
+    indicatorTarget: "20px",
+    indicatorMobileTarget: "24px",
+    imageSlideDistance: "12%",
   },
   shadows: {
     card: "0 16px 30px rgba(0, 0, 0, 0.25)",
@@ -92,11 +113,23 @@ export const theme = {
     normal: "250ms ease",
     slow: "400ms ease",
     projectImageZoom: "250ms ease",
+    skillFill: `${skillFillDuration}ms cubic-bezier(0.4, 0, 0.2, 1)`,
+  },
+  motion: {
+    projectCarousel: {
+      imageDuration: 700,
+      indicatorFillDuration: 140,
+      indicatorHaloDuration: 180,
+      indicatorHaloDelay: 140,
+    },
+    skills: {
+      delay: 200,
+      duration: skillFillDuration,
+    },
   },
   layout: {
     maxWidth: "1760px",
     desktopCardMinHeight: "640px",
-    featuredCardMinWidth: "360px",
     viewportSpacingVertical: "clamp(1rem, 4dvh, 3rem)",
     viewportSpacingHorizontal: "clamp(1rem, 1.5vw, 1.5rem)",
   },

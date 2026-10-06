@@ -1,7 +1,7 @@
 "use client";
 
 import type { Project } from "@/app/pages/projects/models/project.model";
-import { AppIcon } from "@/shared/components/ui/AppIcon/AppIcon";
+import { IconTile } from "@/shared/components/ui/IconTile/IconTile";
 import { TechnologyTag } from "@/shared/components/ui/TechnologyTag/TechnologyTag";
 import type { Locale } from "@/shared/i18n/config";
 import { getDictionary } from "@/shared/i18n/dictionaries";
@@ -17,57 +17,46 @@ import {
   ProjectSummary,
   ProjectTechnologyList,
   ProjectTitle,
-  ProjectViewIcon,
 } from "./ProjectCard.styles";
 
 interface ProjectCardProps {
   project: Project;
   locale: Locale;
-  layout?: "responsive" | "vertical";
-  compact?: boolean;
   titleAs?: "h2" | "h3";
 }
 
 export function ProjectCard({
   project,
   locale,
-  layout = "responsive",
-  compact = false,
   titleAs = "h2",
 }: ProjectCardProps) {
   const dictionary = getDictionary(locale).projects;
-  const vertical = layout === "vertical";
+  const cover = project.cover ?? project.images[0];
 
   return (
     <ProjectLink
       href={`/${locale}/projects/${project.slug}`}
       aria-label={`${dictionary.details}: ${project.title}`}
-      $vertical={vertical}
     >
-      <ProjectImageFrame $vertical={vertical} $compact={compact}>
+      <ProjectImageFrame>
         <ProjectImage
-          src={project.images[0].src}
-          alt={getLocalizedText(project.images[0].alt, locale)}
+          src={cover.src}
+          alt={getLocalizedText(cover.alt, locale)}
           fill
-          sizes={
-            vertical
-              ? "(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 33vw"
-              : "(max-width: 1024px) 100vw, 42vw"
-          }
+          sizes="(max-width: 1024px) 100vw, 42vw"
+          $thumbnailScale={cover.thumbnailScale ?? 1}
         />
         <ProjectImageOverlay aria-hidden="true">
-          <ProjectViewIcon>
-            <AppIcon name="view" />
-          </ProjectViewIcon>
+          <IconTile name="view" size="large" />
         </ProjectImageOverlay>
       </ProjectImageFrame>
-      <ProjectContent $compact={compact}>
+      <ProjectContent>
         <ProjectHeader>
-          <ProjectTitle as={titleAs} $compact={compact}>{project.title}</ProjectTitle>
+          <ProjectTitle as={titleAs}>{project.title}</ProjectTitle>
           <ProjectCategory>{dictionary.filters[project.category]}</ProjectCategory>
         </ProjectHeader>
-        <ProjectSummary $compact={compact}>{project.content[locale].summary}</ProjectSummary>
-        <ProjectTechnologyList $compact={compact} aria-label={dictionary.technologies}>
+        <ProjectSummary>{project.content[locale].summary}</ProjectSummary>
+        <ProjectTechnologyList aria-label={dictionary.technologies}>
           {project.technologies.map((technology) => (
             <li key={technology.name}>
               <TechnologyTag technology={technology} />

@@ -9,12 +9,12 @@ const verticalImageLayout = css`
   aspect-ratio: 16 / 9;
   border-right: 0;
   border-bottom: 1px solid ${({ theme }) => theme.colors.border.subtle};
+  border-radius: ${({ theme }) => `calc(${theme.radius.md} - 1px) calc(${theme.radius.md} - 1px) ${theme.radius.projectImage} ${theme.radius.projectImage}`};
 `;
 
-export const ProjectLink = styled(Link)<{ $vertical: boolean }>`
+export const ProjectLink = styled(Link)`
   display: grid;
-  grid-template-columns: ${({ $vertical }) =>
-    $vertical ? "minmax(0, 1fr)" : "minmax(0, 42%) minmax(0, 1fr)"};
+  grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
   height: 100%;
   overflow: hidden;
   background: ${({ theme }) => theme.gradients.surface};
@@ -41,41 +41,33 @@ export const ProjectLink = styled(Link)<{ $vertical: boolean }>`
   }
 `;
 
-export const ProjectImageFrame = styled.div<{ $vertical: boolean; $compact: boolean }>`
+export const ProjectImageFrame = styled.div`
   position: relative;
   min-height: 280px;
   overflow: hidden;
-  border-radius: ${({ theme }) => theme.radius.projectImage};
+  border-radius: ${({ theme }) => `calc(${theme.radius.md} - 1px) ${theme.radius.projectImage} ${theme.radius.projectImage} calc(${theme.radius.md} - 1px)`};
   border-right: 1px solid ${({ theme }) => theme.colors.border.subtle};
-
-  ${({ $vertical }) => $vertical && verticalImageLayout}
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
     ${verticalImageLayout}
   }
-
-  ${({ $compact }) =>
-    $compact &&
-    css`
-      height: clamp(160px, 14vw, 180px);
-      aspect-ratio: auto;
-    `}
 `;
 
-export const ProjectImage = styled(Image)`
+export const ProjectImage = styled(Image)<{ $thumbnailScale: number }>`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(${({ $thumbnailScale }) => $thumbnailScale});
   transition: transform ${({ theme }) => theme.transitions.projectImageZoom};
 
   @media (hover: hover) and (pointer: fine) {
     ${ProjectLink}:hover & {
-      transform: scale(1.1);
+      transform: scale(${({ $thumbnailScale }) => $thumbnailScale * 1.1});
     }
   }
 
   ${ProjectLink}:focus-visible & {
-    transform: scale(1.1);
+    transform: scale(${({ $thumbnailScale }) => $thumbnailScale * 1.1});
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -113,33 +105,11 @@ export const ProjectImageOverlay = styled.span`
   }
 `;
 
-export const ProjectViewIcon = styled.span`
-  display: grid;
-  width: 60px;
-  height: 60px;
-  place-items: center;
-  color: ${({ theme }) => theme.colors.accent.primary};
-  background: ${({ theme }) => theme.gradients.iconTile};
-  border: 1px solid ${({ theme }) => theme.colors.border.iconTile};
-  border-radius: ${({ theme }) => theme.radius.md};
-
-  svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    width: 56px;
-    height: 56px;
-  }
-`;
-
-export const ProjectContent = styled.div<{ $compact: boolean }>`
+export const ProjectContent = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: ${({ theme, $compact }) =>
-    $compact ? theme.spacing.md : theme.spacing.lg};
+  padding: ${({ theme }) => theme.spacing.lg};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     padding: ${({ theme }) => theme.spacing.md};
@@ -154,10 +124,9 @@ export const ProjectHeader = styled.div`
   gap: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.md};
 `;
 
-export const ProjectTitle = styled.h2<{ $compact: boolean }>`
+export const ProjectTitle = styled.h2`
   min-width: 0;
-  font-size: ${({ theme, $compact }) =>
-    $compact ? theme.fonts.size.md : theme.fonts.size.lg};
+  font-size: ${({ theme }) => theme.fonts.size.lg};
   font-weight: ${({ theme }) => theme.fonts.weight.medium};
   overflow-wrap: anywhere;
   transition: color ${({ theme }) => theme.transitions.fast};
@@ -178,27 +147,15 @@ export const ProjectCategory = styled.p`
   font-size: ${({ theme }) => theme.fonts.size.sm};
 `;
 
-export const ProjectSummary = styled.p<{ $compact: boolean }>`
-  margin-top: ${({ theme, $compact }) =>
-    $compact ? theme.spacing.sm : theme.spacing.md};
+export const ProjectSummary = styled.p`
+  margin-top: ${({ theme }) => theme.spacing.md};
   color: ${({ theme }) => theme.colors.text.muted};
 `;
 
-export const ProjectTechnologyList = styled.ul<{ $compact: boolean }>`
+export const ProjectTechnologyList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: ${({ theme, $compact }) =>
-    $compact ? theme.spacing.xs : theme.spacing.sm};
+  gap: ${({ theme }) => theme.spacing.sm};
   margin-top: auto;
-  padding-top: ${({ theme, $compact }) =>
-    $compact ? theme.spacing.sm : theme.spacing.lg};
-
-  ${({ $compact, theme }) =>
-    $compact &&
-    css`
-      & > li > span {
-        padding: 0.2rem 0.5rem;
-        font-size: ${theme.fonts.size.xs};
-      }
-    `}
+  padding-top: ${({ theme }) => theme.spacing.lg};
 `;

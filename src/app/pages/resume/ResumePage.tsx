@@ -1,86 +1,25 @@
 "use client";
 
 import { education, experience, languageProfiles } from "@/app/pages/resume/data/resume.mock";
+import { ResumeTimeline } from "./components/ResumeTimeline";
+import { ResumeLanguage } from "./components/ResumeLanguage";
 import { PagePanel } from "@/shared/components/ui/PagePanel/PagePanel";
 import type { Locale } from "@/shared/i18n/config";
 import { getDictionary } from "@/shared/i18n/dictionaries";
-import { getLocalizedText } from "@/shared/i18n/getLocalizedText";
-import {
-  EntryDescription,
-  EntryMeta,
-  EntryTitle,
-  ResumeGrid,
-  Section,
-  LanguageHeader,
-  LanguageSubtitle,
-  LanguageSkillList,
-  LanguageSkillRow,
-  LanguageSkillIcon,
-  LanguageLevelBadge,
-  LanguageDescription,
-  LanguageTitle,
-  Timeline,
-  TimelineEntry,
-  TimelineSectionTitle,
-  TimelineTitleIcon,
-} from "./ResumePage.styles";
-import { AccentLine, SectionHeading } from "../about/AboutPage.styles";
+import { ResumeGrid } from "./ResumePage.styles";
 
 export function ResumePage({ locale }: { locale: Locale }) {
   const dictionary = getDictionary(locale).resume;
 
-  const renderTimeline = (items: typeof education) => (
-    <Timeline>
-      {items.map((item, index) => (
-        <TimelineEntry key={`${item.organization}-${item.period}-${index}`}>
-          <EntryTitle>{getLocalizedText(item.title, locale)}</EntryTitle>
-          <EntryMeta>
-            {item.organization} · {item.period}
-          </EntryMeta>
-          <EntryDescription>{getLocalizedText(item.description, locale)}</EntryDescription>
-        </TimelineEntry>
-      ))}
-    </Timeline>
-  );
-
   return (
-    <PagePanel title={dictionary.title}>
+    <PagePanel key={locale} title={dictionary.title} animate>
       <ResumeGrid>
-        <Section>
-          <TimelineSectionTitle>
-            <TimelineTitleIcon name="code" />
-            {dictionary.educationTitle}
-          </TimelineSectionTitle>
-          {renderTimeline(education)}
-        </Section>
-
-        <Section>
-          <TimelineSectionTitle>
-            <TimelineTitleIcon name="code" />
-            {dictionary.experienceTitle}
-          </TimelineSectionTitle>
-          {renderTimeline(experience)}
-        </Section>
+        <ResumeTimeline title={dictionary.educationTitle} items={education} locale={locale} />
+        <ResumeTimeline title={dictionary.experienceTitle} items={experience} locale={locale} />
 
         {languageProfiles.map((language) => (
-          <Section key={language.id} aria-labelledby={`language-${language.id}-heading`}>
-            <LanguageHeader>
-              <SectionHeading id={`language-${language.id}-heading`}>
-                <AccentLine />{getLocalizedText(language.name, locale)}
-              </SectionHeading>
-              <LanguageSubtitle>{getLocalizedText(language.subtitle, locale)}</LanguageSubtitle>
-            </LanguageHeader>
-            <LanguageSkillList aria-label={dictionary.languageSkillsTitle}>
-              {language.skills.map((skill) => (
-                <LanguageSkillRow key={skill.id}>
-                  <LanguageSkillIcon name={skill.icon} />
-                  <LanguageTitle>{getLocalizedText(skill.name, locale)}</LanguageTitle>
-                  <LanguageDescription>{getLocalizedText(skill.description, locale)}</LanguageDescription>
-                  <LanguageLevelBadge>{skill.level}</LanguageLevelBadge>
-                </LanguageSkillRow>
-              ))}
-            </LanguageSkillList>
-          </Section>
+          <ResumeLanguage key={`${locale}-${language.id}`} language={language}
+            locale={locale} listLabel={dictionary.languageSkillsTitle} />
         ))}
       </ResumeGrid>
     </PagePanel>

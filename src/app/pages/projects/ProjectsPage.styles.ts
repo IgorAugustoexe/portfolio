@@ -1,6 +1,11 @@
 "use client";
 
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const projectPopIn = keyframes`
+  from { opacity: 0; transform: scale(var(--project-entry-scale)); }
+  to { opacity: 1; transform: scale(1); }
+`;
 
 export const FilterList = styled.ul`
   display: flex;
@@ -77,6 +82,13 @@ export const FilterSelect = styled.select`
 export const ProjectGrid = styled.ul`
   display: grid;
   gap: ${({ theme }) => theme.spacing.lg};
+`;
+
+export const ProjectItem = styled.li`
+  --project-entry-scale: ${({ theme }) => theme.motion.projectCardEnter.initialScale};
+  min-width: 0;
+  animation: ${projectPopIn} ${({ theme }) => theme.motion.projectCardEnter.duration}ms
+    ${({ theme }) => theme.motion.projectCardEnter.easing} both !important;
 `;
 
 export const EmptyState = styled.p`

@@ -2,6 +2,7 @@
 
 import styled, { css } from "styled-components";
 import type { SkillLevel } from "./data/skills.mock";
+import { cardReveal } from "@/shared/styles/cardReveal";
 
 const skillWidths: Record<SkillLevel, string> = {
   basic: "0%",
@@ -63,7 +64,8 @@ export const ServiceGrid = styled.ul`
   }
 `;
 
-export const ServiceCard = styled.li`
+export const ServiceCard = styled.li<{ $textVisible: boolean }>`
+  ${cardReveal}
   display: grid;
   grid-template-columns: 48px minmax(0, 1fr);
   gap: ${({ theme }) => theme.spacing.md};
@@ -230,7 +232,7 @@ export const SkillMarker = styled.span<{
       background: ${theme.colors.accent.primary};
       box-shadow: ${$current ? `0 0 0 5px ${theme.colors.border.default}` : "none"};
       opacity: ${$animate ? 1 : 0};
-      transition: opacity ${theme.transitions.fast} ${$animate ? $delay : 0}ms !important;
+      transition: opacity ${theme.motion.skills.markerDuration}ms ease ${$animate ? $delay : 0}ms !important;
     }
   `}
 `;

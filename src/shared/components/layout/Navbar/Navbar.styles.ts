@@ -171,7 +171,8 @@ export const LanguageOption = styled.span<{ $active: boolean }>`
     color: ${({ $active, theme }) => ($active ? theme.colors.accent.primary : theme.colors.text.muted)};
     font-size: ${({ theme }) => theme.fonts.size.xs};
     font-weight: ${({ theme }) => theme.fonts.weight.semibold};
-    transition: color ${({ theme }) => theme.transitions.fast};
+    transition: color ${({ theme }) => theme.motion.languageSwitch.duration}ms
+        ${({ theme }) => theme.motion.languageSwitch.easing} !important;
 `
 
 export const LanguageSwitch = styled.label`
@@ -198,7 +199,8 @@ export const LanguageTrack = styled.span`
     background: ${({ theme }) => theme.colors.background.panel};
     border: 1px solid ${({ theme }) => theme.colors.border.default};
     border-radius: ${({ theme }) => theme.radius.round};
-    transition: border-color ${({ theme }) => theme.transitions.fast};
+    transition: border-color ${({ theme }) => theme.motion.languageSwitch.duration}ms
+        ${({ theme }) => theme.motion.languageSwitch.easing} !important;
 
     &::after {
         content: "";
@@ -209,7 +211,8 @@ export const LanguageTrack = styled.span`
         height: 14px;
         background: ${({ theme }) => theme.gradients.accent};
         border-radius: ${({ theme }) => theme.radius.round};
-        transition: transform ${({ theme }) => theme.transitions.normal};
+        transition: transform ${({ theme }) => theme.motion.languageSwitch.duration}ms
+            ${({ theme }) => theme.motion.languageSwitch.easing} !important;
     }
 
     ${LanguageInput}:not(:checked) + &::after {

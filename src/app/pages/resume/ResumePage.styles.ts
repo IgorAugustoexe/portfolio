@@ -1,7 +1,8 @@
 "use client";
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { IconTile } from "@/shared/components/ui/IconTile/IconTile";
+import { cardReveal } from "@/shared/styles/cardReveal";
 
 export const ResumeGrid = styled.div`
   display: grid;
@@ -39,12 +40,48 @@ export const TimelineTitleIcon = styled(IconTile)`
   z-index: 2;
 `;
 
+export const TimelineViewport = styled.div`
+  position: relative;
+`;
+
+export const TimelinePath = styled.span<{ $visible: boolean }>`
+  position: absolute;
+  width: ${({ theme }) => theme.resumeTimeline.lineWidth};
+  opacity: ${({ $visible }) => $visible ? 1 : 0};
+  transform: translateX(-50%);
+  background: ${({ theme }) => theme.colors.border.default};
+  pointer-events: none;
+  transition: height ${({ theme }) => theme.motion.resumeTimeline.travelDuration}ms
+    ${({ theme }) => theme.motion.resumeTimeline.travelEasing} !important;
+`;
+
+const markerAppearance = css`
+  position: absolute;
+  z-index: 1;
+  width: ${({ theme }) => theme.resumeTimeline.markerSize};
+  height: ${({ theme }) => theme.resumeTimeline.markerSize};
+  background: ${({ theme }) => theme.gradients.accent};
+  border-radius: ${({ theme }) => theme.radius.circle};
+  box-shadow: 0 0 0 ${({ theme }) => theme.resumeTimeline.markerHalo} ${({ theme }) => theme.colors.background.soft};
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+`;
+
+export const TimelineMarker = styled.span`
+  ${markerAppearance}
+`;
+
+export const TimelineBall = styled.span<{ $visible: boolean }>`
+  ${markerAppearance}
+  opacity: ${({ $visible }) => $visible ? 1 : 0};
+  transition: ${({ $visible, theme }) => $visible
+    ? `top ${theme.motion.resumeTimeline.travelDuration}ms ${theme.motion.resumeTimeline.travelEasing}`
+    : "none"} !important;
+`;
+
 export const Timeline = styled.ol`
   --timeline-gutter: calc(${({ theme }) => theme.spacing.xxl} + ${({ theme }) => theme.spacing.sm});
   --timeline-gap: ${({ theme }) => theme.spacing.lg};
-  --timeline-axis: 24px;
-  --timeline-title-lead: 48px;
-  --timeline-marker-offset: calc(${({ theme }) => theme.spacing.lg} + 14px);
 
   display: grid;
   gap: var(--timeline-gap);
@@ -52,48 +89,23 @@ export const Timeline = styled.ol`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     --timeline-gutter: calc(${({ theme }) => theme.spacing.xl} + ${({ theme }) => theme.spacing.sm});
-    --timeline-axis: 20px;
-    --timeline-title-lead: 44px;
   }
 `;
 
-export const TimelineEntry = styled.li`
+export const TimelineEntry = styled.li<{ $visible: boolean }>`
   position: relative;
   padding: ${({ theme }) => theme.spacing.lg};
   background: ${({ theme }) => theme.gradients.surface};
   border: 1px solid ${({ theme }) => theme.colors.border.subtle};
   border-radius: ${({ theme }) => theme.radius.md};
+  opacity: ${({ $visible }) => $visible ? 1 : 0};
+  transition: opacity ${({ theme }) => theme.motion.resumeTimeline.cardDuration}ms ease-out !important;
+`;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: -15px;
-    bottom: -12px;
-    left: calc(var(--timeline-axis) - var(--timeline-gutter));
-    width: 1px;
-    background: ${({ theme }) => theme.colors.border.default};
-  }
-
-  &:first-child::before {
-    top: calc(-1 * var(--timeline-title-lead));
-  }
-
-  &:last-child::before {
-    bottom: calc(100% - var(--timeline-marker-offset) + 2px);
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    top: calc(var(--timeline-marker-offset) - 6px);
-    left: calc(var(--timeline-axis) - var(--timeline-gutter) - 5.5px);
-    width: 12px;
-    height: 12px;
-    background: ${({ theme }) => theme.gradients.accent};
-    border-radius: ${({ theme }) => theme.radius.round};
-    box-shadow: 0 0 0 7px ${({ theme }) => theme.colors.background.soft};
-  }
+export const TimelineContent = styled.div<{ $visible: boolean }>`
+  opacity: ${({ $visible }) => $visible ? 1 : 0};
+  transition: opacity ${({ theme }) => theme.motion.resumeTimeline.contentDuration}ms ease-out
+    ${({ $visible, theme }) => $visible ? theme.motion.resumeTimeline.cardDuration : 0}ms !important;
 `;
 
 export const EntryTitle = styled.h3`
@@ -127,7 +139,8 @@ export const LanguageSkillList = styled.ul`
   gap: ${({ theme }) => theme.spacing.md};
 `;
 
-export const LanguageSkillRow = styled.li`
+export const LanguageSkillRow = styled.li<{ $textVisible: boolean }>`
+  ${cardReveal}
   display: grid;
   grid-template-columns: 48px minmax(0, 1fr) auto;
   grid-template-areas:

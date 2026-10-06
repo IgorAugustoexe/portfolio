@@ -3,6 +3,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { IconTile } from "@/shared/components/ui/IconTile/IconTile";
+import { cardReveal, contentReveal } from "@/shared/styles/cardReveal";
 
 export const BackLink = styled(Link)`
   display: inline-flex;
@@ -49,7 +50,8 @@ export const Overview = styled.div`
   }
 `;
 
-export const Information = styled.div`
+export const Information = styled.div<{ $textVisible: boolean }>`
+  ${cardReveal}
   display: grid;
   gap: ${({ theme }) => theme.spacing.lg};
   padding: clamp(1.25rem, 3vw, 2rem);
@@ -84,7 +86,8 @@ export const ProjectLogoStamp = styled(IconTile)`
   }
 `;
 
-export const TechnologyList = styled.div`
+export const TechnologyList = styled.div<{ $textVisible: boolean }>`
+  ${contentReveal}
   display: flex;
   flex-wrap: wrap;
   gap: ${({ theme }) => theme.spacing.sm};
@@ -94,7 +97,8 @@ export const TechnologyList = styled.div`
   }
 `;
 
-export const Description = styled.p`
+export const Description = styled.p<{ $textVisible: boolean }>`
+  ${contentReveal}
   color: ${({ theme }) => theme.colors.text.secondary};
 `;
 
@@ -110,7 +114,8 @@ export const ResultGrid = styled.div`
   }
 `;
 
-export const ResultCard = styled.section`
+export const ResultCard = styled.section<{ $textVisible: boolean }>`
+  ${cardReveal}
   padding: clamp(1.25rem, 3vw, 2rem);
   background: ${({ theme }) => theme.gradients.surface};
   border: 1px solid ${({ theme }) => theme.colors.border.subtle};

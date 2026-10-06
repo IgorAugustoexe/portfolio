@@ -9,6 +9,7 @@ import { AppIcon } from "@/shared/components/ui/AppIcon/AppIcon"
 import type { Locale } from "@/shared/i18n/config"
 import { getDictionary } from "@/shared/i18n/dictionaries"
 import { theme } from "@/shared/styles/theme"
+import { useSequentialCardReveal } from "@/shared/hooks/useSequentialCardReveal"
 import {
     BackLink,
     Description,
@@ -23,55 +24,62 @@ import {
 } from "./ProjectDetailsPage.styles"
 
 export function ProjectDetailsPage({ project, locale }: { project: Project; locale: Locale }) {
+    return <ProjectDetailsContent key={`${project.slug}-${locale}`} project={project} locale={locale} />
+}
+
+function ProjectDetailsContent({ project, locale }: { project: Project; locale: Locale }) {
     const dictionary = getDictionary(locale).projects
     const content = project.content[locale]
+    const { listRef, isTextVisible } = useSequentialCardReveal<HTMLDivElement>(4, "[data-reveal-block]")
 
     return (
-        <PagePanel title={project.title}>
+        <PagePanel key={`${project.slug}-${locale}`} title={project.title} animate>
             <BackLink href={`/${locale}/projects`}>
                 <AppIcon name="back" />
                 {dictionary.title}
             </BackLink>
-            <Overview>
-                <Information>
-                    <ResultHeading>
-                        {project.logo ? (
-                            <ProjectLogoStamp
-                                image={project.logo}
-                                imageSizes={`(max-width: ${theme.breakpoints.mobile}) ${theme.projectLogoStamp.mobileSize}, ${theme.projectLogoStamp.size}`}
-                            />
-                        ) : (
-                            <SmallTitle>{dictionary.technologies}</SmallTitle>
-                        )}
-                    </ResultHeading>
-                    <TechnologyList>
-                        {project.technologies.map((technology) => (
-                            <TechnologyTag key={technology.name} technology={technology} />
-                        ))}
-                    </TechnologyList>
-                    <Description>{content.description}</Description>
-                </Information>
-                {project.images.length > 0 && (
-                    <ProjectCarousel key={project.images.length} images={project.images} locale={locale} />
-                )}
-            </Overview>
+            <div ref={listRef}>
+                <Overview>
+                    <Information $textVisible={isTextVisible(0)}>
+                        <ResultHeading>
+                            {project.logo ? (
+                                <ProjectLogoStamp
+                                    image={project.logo}
+                                    imageSizes={`(max-width: ${theme.breakpoints.mobile}) ${theme.projectLogoStamp.mobileSize}, ${theme.projectLogoStamp.size}`}
+                                />
+                            ) : (
+                                <SmallTitle data-reveal-content>{dictionary.technologies}</SmallTitle>
+                            )}
+                        </ResultHeading>
+                        <TechnologyList data-reveal-block $textVisible={isTextVisible(0)}>
+                            {project.technologies.map((technology) => (
+                                <TechnologyTag key={technology.name} technology={technology} />
+                            ))}
+                        </TechnologyList>
+                        <Description data-reveal-block $textVisible={isTextVisible(1)}>{content.description}</Description>
+                    </Information>
+                    {project.images.length > 0 && (
+                        <ProjectCarousel key={project.images.length} images={project.images} locale={locale} />
+                    )}
+                </Overview>
 
-            <ResultGrid>
-                <ResultCard>
-                    <ResultHeading>
-                        <IconTile name="challenges" />
-                        <SmallTitle>{dictionary.challenges}</SmallTitle>
-                    </ResultHeading>
-                    <p>{content.challenges}</p>
-                </ResultCard>
-                <ResultCard>
-                    <ResultHeading>
-                        <IconTile name="learnings" />
-                        <SmallTitle>{dictionary.learnings}</SmallTitle>
-                    </ResultHeading>
-                    <p>{content.learnings}</p>
-                </ResultCard>
-            </ResultGrid>
+                <ResultGrid>
+                    <ResultCard data-reveal-block $textVisible={isTextVisible(2)}>
+                        <ResultHeading>
+                            <IconTile name="challenges" />
+                            <SmallTitle data-reveal-content>{dictionary.challenges}</SmallTitle>
+                        </ResultHeading>
+                        <p data-reveal-content>{content.challenges}</p>
+                    </ResultCard>
+                    <ResultCard data-reveal-block $textVisible={isTextVisible(3)}>
+                        <ResultHeading>
+                            <IconTile name="learnings" />
+                            <SmallTitle data-reveal-content>{dictionary.learnings}</SmallTitle>
+                        </ResultHeading>
+                        <p data-reveal-content>{content.learnings}</p>
+                    </ResultCard>
+                </ResultGrid>
+            </div>
         </PagePanel>
     )
 }

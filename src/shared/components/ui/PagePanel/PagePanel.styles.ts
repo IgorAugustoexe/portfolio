@@ -1,10 +1,20 @@
 "use client"
 
-import styled from "styled-components"
+import styled, { css, keyframes } from "styled-components"
 
-export const Panel = styled.article`
+const pageFade = keyframes`
+    from { opacity: 0; }
+    to { opacity: 1; }
+`
+
+export const Panel = styled.article<{ $animate: boolean }>`
     min-height: ${({ theme }) => theme.layout.desktopCardMinHeight};
     padding: clamp(2.5rem, 5vw, 4rem) clamp(0.5rem, 2vw, 1.5rem) ${({ theme }) => theme.spacing.xxl};
+
+    ${({ $animate, theme }) => $animate && css`
+        animation: ${pageFade} ${theme.motion.pageFade.duration}ms
+            ${theme.motion.pageFade.easing} both !important;
+    `}
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
         min-height: 0;

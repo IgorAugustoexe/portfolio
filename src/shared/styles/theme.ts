@@ -1,4 +1,4 @@
-const skillFillDuration = 1000;
+const skillFillDuration = 400;
 
 export const theme = {
   colors: {
@@ -104,6 +104,12 @@ export const theme = {
     indicatorMobileTarget: "24px",
     imageSlideDistance: "12%",
   },
+  resumeTimeline: {
+    markerSize: "12px",
+    markerHalo: "7px",
+    markerTitleOffset: 14,
+    lineWidth: "1px",
+  },
   shadows: {
     card: "0 16px 30px rgba(0, 0, 0, 0.25)",
     button: "0 8px 20px rgba(0, 0, 0, 0.2)",
@@ -116,6 +122,31 @@ export const theme = {
     skillFill: `${skillFillDuration}ms cubic-bezier(0.4, 0, 0.2, 1)`,
   },
   motion: {
+    languageSwitch: {
+      duration: 240,
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+    },
+    cardReveal: {
+      startDelay: 10,
+      contentDuration: 240,
+    },
+    resumeTimeline: {
+      startDelay: 10,
+      travelDuration: 180,
+      cardDuration: 240,
+      contentDuration: 120,
+      stepPause: 0,
+      travelEasing: "cubic-bezier(0.4, 0, 0.2, 1)",
+    },
+    pageFade: {
+      duration: 500,
+      easing: "ease",
+    },
+    projectCardEnter: {
+      duration: 250,
+      initialScale: 0.7,
+      easing: "ease-out",
+    },
     projectCarousel: {
       imageDuration: 700,
       indicatorFillDuration: 140,
@@ -123,8 +154,9 @@ export const theme = {
       indicatorHaloDelay: 140,
     },
     skills: {
-      delay: 200,
+      delay: 30,
       duration: skillFillDuration,
+      markerDuration: 50,
     },
   },
   layout: {

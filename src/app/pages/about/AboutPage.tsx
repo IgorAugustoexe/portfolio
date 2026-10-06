@@ -10,6 +10,7 @@ import type { Locale } from "@/shared/i18n/config";
 import { getDictionary } from "@/shared/i18n/dictionaries";
 import { getLocalizedText } from "@/shared/i18n/getLocalizedText";
 import { theme } from "@/shared/styles/theme";
+import { useSequentialCardReveal } from "@/shared/hooks/useSequentialCardReveal";
 import {
   AboutIntro,
   AccentLine,
@@ -40,6 +41,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
   const about = dictionary.about;
   const skillsListRef = useRef<HTMLUListElement>(null);
   const [visibleSkills, setVisibleSkills] = useState<Set<string>>(() => new Set());
+  const servicesReveal = useSequentialCardReveal(aboutContent.services.length);
 
   useEffect(() => {
     const list = skillsListRef.current;
@@ -73,7 +75,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
   }, []);
 
   return (
-    <PagePanel title={about.title}>
+    <PagePanel key={locale} title={about.title} animate>
       <AboutIntro>
         {aboutContent.introduction[locale].map((paragraph, index) => (
           <p key={index}>{paragraph}</p>
@@ -87,11 +89,11 @@ export function AboutPage({ locale }: { locale: Locale }) {
             {about.servicesTitle}
           </SectionHeading>
         </SectionTitleRow>
-        <ServiceGrid>
-          {aboutContent.services.map((service) => (
-            <ServiceCard key={service.id}>
+        <ServiceGrid ref={servicesReveal.listRef}>
+          {aboutContent.services.map((service, index) => (
+            <ServiceCard key={service.id} $textVisible={servicesReveal.isTextVisible(index)}>
               <IconTile name={service.icon} />
-              <div>
+              <div data-reveal-content>
                 <ServiceTitle>{getLocalizedText(service.title, locale)}</ServiceTitle>
                 <ServiceDescription>{getLocalizedText(service.description, locale)}</ServiceDescription>
                 <TechnologyList>

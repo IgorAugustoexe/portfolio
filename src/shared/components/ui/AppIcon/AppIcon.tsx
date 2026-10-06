@@ -42,7 +42,7 @@ export type AppIconName =
   | "challenges"
   | "learnings"
   | "back"
-  | "foward";
+  | "forward";
 
 const icons: Record<AppIconName, IconDefinition> = {
   email: faEnvelope,
@@ -64,7 +64,7 @@ const icons: Record<AppIconName, IconDefinition> = {
   challenges: faMountainSun,
   learnings: faLightbulb,
   back: faArrowLeft,
-  foward: faArrowRight,
+  forward: faArrowRight,
 };
 
 interface AppIconProps {

@@ -14,6 +14,7 @@ import {
     FilterSelect,
     FilterSelectLabel,
     ProjectGrid,
+    ProjectItem,
 } from "./ProjectsPage.styles"
 
 const projectFilters: ProjectFilter[] = ["all", "mobile", "web", "academic"]
@@ -26,7 +27,7 @@ export function ProjectsPage({ locale }: { locale: Locale }) {
     )
 
     return (
-        <PagePanel title={dictionary.title}>
+        <PagePanel key={locale} title={dictionary.title} animate>
             <FilterList aria-label={dictionary.filterLabel}>
                 {projectFilters.map((filter) => (
                     <li key={filter}>
@@ -61,9 +62,9 @@ export function ProjectsPage({ locale }: { locale: Locale }) {
             {filteredProjects.length > 0 ? (
                 <ProjectGrid>
                     {filteredProjects.map((project) => (
-                        <li key={project.slug}>
+                        <ProjectItem key={`${selectedFilter}-${project.slug}`}>
                             <ProjectCard project={project} locale={locale} />
-                        </li>
+                        </ProjectItem>
                     ))}
                 </ProjectGrid>
             ) : (

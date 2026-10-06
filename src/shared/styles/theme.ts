@@ -3,7 +3,6 @@ const skillFillDuration = 400;
 export const theme = {
   colors: {
     background: {
-      page: "#0b0e12",
       panel: "#171a1f",
       elevated: "#1d2025",
       soft: "#24272c",
@@ -22,27 +21,17 @@ export const theme = {
     },
     accent: {
       primary: "#ffdb86",
-      secondary: "#f3ba61",
     },
     border: {
       default: "#34383e",
       subtle: "#292d33",
       projectHover: "#4a4f56",
       iconTile: "rgba(255, 219, 134, 0.2)",
-      highlighted: "#ffdb86",
-    },
-    icon: {
-      primary: "#ffdb86",
-      secondary: "#d6d6d6",
     },
     scrollbar: {
       track: "#080a0e",
       thumb: "#343436",
       thumbHover: "#4a4a4d",
-    },
-    status: {
-      success: "#55c875",
-      error: "#ff6b6b",
     },
   },
   gradients: {
@@ -60,11 +49,8 @@ export const theme = {
       sm: "0.875rem",
       md: "1rem",
       lg: "1.25rem",
-      xl: "1.75rem",
-      title: "2rem",
     },
     weight: {
-      light: 300,
       regular: 400,
       medium: 500,
       semibold: 600,
@@ -83,6 +69,7 @@ export const theme = {
     md: "10px",
     lg: "10px",
     projectImage: "16px",
+    projectFilter: "14px",
     round: "10px",
     circle: "50%",
   },
@@ -111,13 +98,11 @@ export const theme = {
     lineWidth: "1px",
   },
   shadows: {
-    card: "0 16px 30px rgba(0, 0, 0, 0.25)",
     button: "0 8px 20px rgba(0, 0, 0, 0.2)",
   },
   transitions: {
     fast: "150ms ease",
     normal: "250ms ease",
-    slow: "400ms ease",
     projectImageZoom: "250ms ease",
     skillFill: `${skillFillDuration}ms cubic-bezier(0.4, 0, 0.2, 1)`,
   },

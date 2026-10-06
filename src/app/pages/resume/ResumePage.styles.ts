@@ -11,28 +11,13 @@ export const ResumeGrid = styled.div`
 
 export const Section = styled.section``;
 
-export const SectionTitle = styled.h2`
+export const TimelineSectionTitle = styled.h2`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.md};
   margin-bottom: ${({ theme }) => theme.spacing.lg};
   font-size: clamp(1.4rem, 2vw, 1.8rem);
   font-weight: ${({ theme }) => theme.fonts.weight.semibold};
-
-  &::before {
-    content: "";
-    width: 8px;
-    height: 8px;
-    background: ${({ theme }) => theme.colors.accent.primary};
-    border-radius: ${({ theme }) => theme.radius.round};
-    box-shadow: 0 0 0 6px rgba(255, 219, 134, 0.09);
-  }
-`;
-
-export const TimelineSectionTitle = styled(SectionTitle)`
-  &::before {
-    display: none;
-  }
 `;
 
 export const TimelineTitleIcon = styled(IconTile)`

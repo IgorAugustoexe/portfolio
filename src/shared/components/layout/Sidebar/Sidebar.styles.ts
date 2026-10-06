@@ -141,7 +141,7 @@ export const IconBox = styled.span`
     width: 36px;
     height: 36px;
     place-items: center;
-    color: ${({ theme }) => theme.colors.icon.primary};
+    color: ${({ theme }) => theme.colors.accent.primary};
     font-weight: ${({ theme }) => theme.fonts.weight.semibold};
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid ${({ theme }) => theme.colors.border.subtle};
@@ -156,13 +156,6 @@ export const IconBox = styled.span`
         width: 32px;
         height: 32px;
     }
-`
-
-export const ContactLabel = styled.span`
-    display: block;
-    color: ${({ theme }) => theme.colors.text.muted};
-    font-size: ${({ theme }) => theme.fonts.size.xs};
-    text-transform: uppercase;
 `
 
 export const ContactValue = styled.span`

@@ -4,7 +4,7 @@ import type { LanguageProfile } from "../models/resume.model";
 import type { Locale } from "@/shared/i18n/config";
 import { getLocalizedText } from "@/shared/i18n/getLocalizedText";
 import { useSequentialCardReveal } from "@/shared/hooks/useSequentialCardReveal";
-import { AccentLine, SectionHeading } from "../../about/AboutPage.styles";
+import { SectionHeading } from "@/shared/components/ui/SectionHeading/SectionHeading";
 import {
   Section, LanguageHeader, LanguageSubtitle, LanguageSkillList,
   LanguageSkillRow, LanguageSkillIcon, LanguageTitle,
@@ -22,7 +22,7 @@ export function ResumeLanguage({ language, locale, listLabel }: {
     <Section aria-labelledby={`language-${language.id}-heading`}>
       <LanguageHeader>
         <SectionHeading id={`language-${language.id}-heading`}>
-          <AccentLine />{getLocalizedText(language.name, locale)}
+          {getLocalizedText(language.name, locale)}
         </SectionHeading>
         <LanguageSubtitle>{getLocalizedText(language.subtitle, locale)}</LanguageSubtitle>
       </LanguageHeader>

@@ -53,21 +53,20 @@ export const ProjectImageFrame = styled.div`
   }
 `;
 
-export const ProjectImage = styled(Image)<{ $thumbnailScale: number }>`
+export const ProjectImage = styled(Image)`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(${({ $thumbnailScale }) => $thumbnailScale});
   transition: transform ${({ theme }) => theme.transitions.projectImageZoom};
 
   @media (hover: hover) and (pointer: fine) {
     ${ProjectLink}:hover & {
-      transform: scale(${({ $thumbnailScale }) => $thumbnailScale * 1.1});
+      transform: scale(1.1);
     }
   }
 
   ${ProjectLink}:focus-visible & {
-    transform: scale(${({ $thumbnailScale }) => $thumbnailScale * 1.1});
+    transform: scale(1.1);
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -54,10 +54,6 @@ export const NavigationList = styled.ul`
         }
     }
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         flex: 1 1 auto;

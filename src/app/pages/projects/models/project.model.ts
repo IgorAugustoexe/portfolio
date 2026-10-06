@@ -11,7 +11,6 @@ export interface Technology {
 export interface ProjectImage {
     src: StaticImageData
     alt: LocalizedText
-    thumbnailScale?: number
 }
 
 export interface ProjectContent {

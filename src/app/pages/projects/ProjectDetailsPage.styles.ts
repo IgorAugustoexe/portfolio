@@ -26,7 +26,7 @@ export const BackLink = styled(Link)`
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      color: ${({ theme }) => theme.colors.text.muted};
+      color: ${({ theme }) => theme.colors.accent.primary};
     }
   }
 

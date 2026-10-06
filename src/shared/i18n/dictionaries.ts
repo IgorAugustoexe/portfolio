@@ -2,7 +2,6 @@ import type { Locale } from "./config";
 
 const dictionaries = {
   pt: {
-    languageName: "Português",
     navigation: {
       about: "Sobre",
       resume: "Resumo",
@@ -52,7 +51,6 @@ const dictionaries = {
     },
   },
   en: {
-    languageName: "English",
     navigation: {
       about: "About",
       resume: "Resume",

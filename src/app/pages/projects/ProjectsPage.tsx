@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { ProjectCard } from "@/app/pages/projects/components/ProjectCard"
+import { ProjectFilterSelect } from "@/app/pages/projects/components/ProjectFilterSelect"
 import { projects } from "@/app/pages/projects/data/projects.mock"
 import type { ProjectFilter } from "@/app/pages/projects/models/project.model"
 import { PagePanel } from "@/shared/components/ui/PagePanel/PagePanel"
@@ -11,8 +12,6 @@ import {
     EmptyState,
     FilterButton,
     FilterList,
-    FilterSelect,
-    FilterSelectLabel,
     ProjectGrid,
     ProjectItem,
 } from "./ProjectsPage.styles"
@@ -44,20 +43,13 @@ export function ProjectsPage({ locale }: { locale: Locale }) {
                 ))}
             </FilterList>
 
-            <FilterSelectLabel htmlFor="project-category-filter">
-                {dictionary.filterLabel}
-            </FilterSelectLabel>
-            <FilterSelect
-                id="project-category-filter"
+            <ProjectFilterSelect
+                filters={projectFilters}
+                labels={dictionary.filters}
+                label={dictionary.filterLabel}
                 value={selectedFilter}
-                onChange={(event) => setSelectedFilter(event.target.value as ProjectFilter)}
-            >
-                {projectFilters.map((filter) => (
-                    <option key={filter} value={filter}>
-                        {dictionary.filters[filter]}
-                    </option>
-                ))}
-            </FilterSelect>
+                onChange={setSelectedFilter}
+            />
 
             {filteredProjects.length > 0 ? (
                 <ProjectGrid>

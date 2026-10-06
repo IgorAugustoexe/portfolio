@@ -22,13 +22,11 @@ import {
 interface ProjectCardProps {
   project: Project;
   locale: Locale;
-  titleAs?: "h2" | "h3";
 }
 
 export function ProjectCard({
   project,
   locale,
-  titleAs = "h2",
 }: ProjectCardProps) {
   const dictionary = getDictionary(locale).projects;
   const cover = project.cover ?? project.images[0];
@@ -44,7 +42,6 @@ export function ProjectCard({
           alt={getLocalizedText(cover.alt, locale)}
           fill
           sizes="(max-width: 1024px) 100vw, 42vw"
-          $thumbnailScale={cover.thumbnailScale ?? 1}
         />
         <ProjectImageOverlay aria-hidden="true">
           <IconTile name="view" size="large" />
@@ -52,7 +49,7 @@ export function ProjectCard({
       </ProjectImageFrame>
       <ProjectContent>
         <ProjectHeader>
-          <ProjectTitle as={titleAs}>{project.title}</ProjectTitle>
+          <ProjectTitle>{project.title}</ProjectTitle>
           <ProjectCategory>{dictionary.filters[project.category]}</ProjectCategory>
         </ProjectHeader>
         <ProjectSummary>{project.content[locale].summary}</ProjectSummary>

@@ -4,14 +4,13 @@ import {
   faArrowLeft,
   faArrowRight,
   faBookOpen,
-  faCircleCheck,
+  faChevronDown,
   faCode,
   faComment,
   faEnvelope,
   faEye,
   faFileLines,
   faFolderOpen,
-  faGear,
   faHeadphones,
   faHouse,
   faLaptopCode,
@@ -37,12 +36,11 @@ export type AppIconName =
   | "writing"
   | "listening"
   | "conversation"
-  | "settings"
-  | "check"
   | "challenges"
   | "learnings"
   | "back"
-  | "forward";
+  | "forward"
+  | "chevronDown";
 
 const icons: Record<AppIconName, IconDefinition> = {
   email: faEnvelope,
@@ -59,12 +57,11 @@ const icons: Record<AppIconName, IconDefinition> = {
   writing: faPen,
   listening: faHeadphones,
   conversation: faComment,
-  settings: faGear,
-  check: faCircleCheck,
   challenges: faMountainSun,
   learnings: faLightbulb,
   back: faArrowLeft,
   forward: faArrowRight,
+  chevronDown: faChevronDown,
 };
 
 interface AppIconProps {

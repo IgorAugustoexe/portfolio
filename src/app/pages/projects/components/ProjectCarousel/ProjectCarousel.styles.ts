@@ -92,14 +92,13 @@ export const ControlButton = styled.button`
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      color: ${({ theme }) => theme.colors.text.muted};
-      border-color: ${({ theme }) => theme.colors.border.projectHover};
+      color: ${({ theme }) => theme.colors.accent.primary};
     }
   }
 
   &:active {
     color: ${({ theme }) => theme.colors.accent.primary};
-    border-color: ${({ theme }) => theme.colors.border.highlighted};
+    border-color: ${({ theme }) => theme.colors.accent.primary};
   }
 
   &:focus-visible {
@@ -181,7 +180,7 @@ export const Indicator = styled.button<{ $active: boolean }>`
 
   @media (hover: hover) and (pointer: fine) {
     &:hover:not(:disabled) {
-      --indicator-base: ${({ theme }) => theme.colors.text.muted};
+      --indicator-base: ${({ theme }) => theme.colors.accent.primary};
     }
   }
 

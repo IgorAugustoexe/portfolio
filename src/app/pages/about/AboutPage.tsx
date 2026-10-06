@@ -6,6 +6,7 @@ import { skills, type SkillLevel } from "@/app/pages/about/data/skills.mock";
 import { IconTile } from "@/shared/components/ui/IconTile/IconTile";
 import { TechnologyTag } from "@/shared/components/ui/TechnologyTag/TechnologyTag";
 import { PagePanel } from "@/shared/components/ui/PagePanel/PagePanel";
+import { SectionHeading } from "@/shared/components/ui/SectionHeading/SectionHeading";
 import type { Locale } from "@/shared/i18n/config";
 import { getDictionary } from "@/shared/i18n/dictionaries";
 import { getLocalizedText } from "@/shared/i18n/getLocalizedText";
@@ -13,7 +14,6 @@ import { theme } from "@/shared/styles/theme";
 import { useSequentialCardReveal } from "@/shared/hooks/useSequentialCardReveal";
 import {
   AboutIntro,
-  AccentLine,
   SkillsSection,
   SkillsCard,
   SkillScale,
@@ -25,7 +25,6 @@ import {
   SkillLine,
   SkillFill,
   SkillMarker,
-  SectionHeading,
   SectionTitleRow,
   ServiceCard,
   ServiceDescription,
@@ -85,7 +84,6 @@ export function AboutPage({ locale }: { locale: Locale }) {
       <section aria-labelledby="services-heading">
         <SectionTitleRow>
           <SectionHeading id="services-heading">
-            <AccentLine />
             {about.servicesTitle}
           </SectionHeading>
         </SectionTitleRow>
@@ -112,7 +110,6 @@ export function AboutPage({ locale }: { locale: Locale }) {
       <SkillsSection aria-labelledby="skills-heading">
         <SectionTitleRow>
           <SectionHeading id="skills-heading">
-            <AccentLine />
             {about.skillsTitle}
           </SectionHeading>
         </SectionTitleRow>

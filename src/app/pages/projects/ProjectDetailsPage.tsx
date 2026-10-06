@@ -33,7 +33,7 @@ function ProjectDetailsContent({ project, locale }: { project: Project; locale: 
     const { listRef, isTextVisible } = useSequentialCardReveal<HTMLDivElement>(4, "[data-reveal-block]")
 
     return (
-        <PagePanel key={`${project.slug}-${locale}`} title={project.title} animate>
+        <PagePanel title={project.title} animate>
             <BackLink href={`/${locale}/projects`}>
                 <AppIcon name="back" />
                 {dictionary.title}

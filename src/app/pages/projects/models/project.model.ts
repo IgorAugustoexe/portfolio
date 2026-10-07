@@ -8,9 +8,14 @@ export interface Technology {
     name: string
 }
 
-export interface ProjectImage {
+export interface ProjectCover {
     src: StaticImageData
     alt: LocalizedText
+}
+
+export interface ProjectImage extends ProjectCover {
+    title: LocalizedText
+    description: LocalizedText
 }
 
 export interface ProjectContent {
@@ -25,7 +30,7 @@ export interface Project {
     title: string
     category: ProjectCategory
     logo?: StaticImageData
-    cover?: ProjectImage
+    cover?: ProjectCover
     technologies: Technology[]
     images: ProjectImage[]
     content: Record<"pt" | "en", ProjectContent>

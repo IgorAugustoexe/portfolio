@@ -83,7 +83,12 @@ export const theme = {
     imageSize: "85%",
   },
   projectCarousel: {
+    previewScale: 0.85,
+    previewOpacity: 0.6,
+    controlsWidth: "42rem",
     portraitHeight: "clamp(36rem, 62vh, 56rem)",
+    landscapeWidth: "36rem",
+    deckPreviewVisible: 1 / 3,
     indicatorsPerRow: 20,
     indicatorSize: "12px",
     indicatorHaloScale: 2,
@@ -113,7 +118,7 @@ export const theme = {
     },
     cardReveal: {
       startDelay: 10,
-      contentDuration: 240,
+      contentDuration: 80,
     },
     resumeTimeline: {
       startDelay: 10,
@@ -134,6 +139,9 @@ export const theme = {
     },
     projectCarousel: {
       imageDuration: 700,
+      imageEasing: "cubic-bezier(0.22, 1, 0.36, 1)",
+      previewFadeDuration: 240,
+      previewFadeDelay: 280,
       indicatorFillDuration: 140,
       indicatorHaloDuration: 180,
       indicatorHaloDelay: 140,
@@ -152,7 +160,7 @@ export const theme = {
   },
   breakpoints: {
     mobile: "480px",
-    tablet: "768px",
+    tablet: "1024px",
     desktop: "1024px",
     wide: "1280px",
   },

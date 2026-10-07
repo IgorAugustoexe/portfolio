@@ -1,6 +1,7 @@
 "use client"
 
 import styled from "styled-components"
+import { contentReveal } from "@/shared/styles/cardReveal"
 
 export const Tag = styled.span`
     display: inline-flex;
@@ -12,4 +13,8 @@ export const Tag = styled.span`
     background: ${({ theme }) => theme.colors.background.soft};
     border: 1px solid ${({ theme }) => theme.colors.border.default};
     border-radius: ${({ theme }) => theme.radius.sm};
+`
+
+export const TagText = styled.span<{ $textVisible: boolean }>`
+    ${contentReveal}
 `

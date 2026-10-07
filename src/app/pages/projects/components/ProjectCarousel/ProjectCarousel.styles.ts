@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import styled, { css, keyframes } from "styled-components";
+import { popIn } from "@/shared/styles/popIn";
 
 const imageEnter = keyframes`
   from { opacity: 0; transform: translateX(calc(var(--carousel-slide) * var(--carousel-direction))); }
@@ -13,8 +14,30 @@ const imageExit = keyframes`
   to { opacity: 0; transform: translateX(calc(var(--carousel-slide) * var(--carousel-direction) * -1)); }
 `;
 
-export const Carousel = styled.div`
+const captionEnter = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
+const cardFadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: var(--card-opacity); }
+`;
+
+const cardRecycle = keyframes`
+  from { opacity: var(--card-opacity); transform: var(--previous-card-transform); }
+  40% { opacity: 0; transform: var(--exiting-card-transform); }
+  41% { opacity: 0; transform: var(--current-card-transform); }
+  80%, to { opacity: var(--card-opacity); transform: var(--current-card-transform); }
+`;
+
+const cardTransform = (position: number, scale: number) =>
+  `translate(-50%, -50%) translateX(calc(100% * var(--showcase-offset) * ${position} + var(--showcase-gap) * ${position})) scale(${position === 0 ? 1 : scale})`;
+
+export const Carousel = styled.div<{ $revealed: boolean }>`
   min-width: 0;
+  opacity: ${({ $revealed }) => $revealed ? 1 : 0};
+  ${({ $revealed }) => $revealed && popIn}
 `;
 
 export const ImageFrame = styled.figure<{ $aspectRatio: number }>`
@@ -31,6 +54,92 @@ export const ImageFrame = styled.figure<{ $aspectRatio: number }>`
   border-radius: ${({ theme }) => theme.radius.md};
 `;
 
+export const Showcase = styled.div<{ $aspectRatio: number; $landscape: boolean }>`
+  position: relative;
+  --showcase-gap: ${({ $landscape, theme }) => $landscape ? "0px" : theme.spacing.xl};
+  --showcase-columns: ${({ $landscape, theme }) =>
+    1 + 2 * theme.projectCarousel.previewScale * ($landscape ? theme.projectCarousel.deckPreviewVisible : 1)};
+  --showcase-offset: ${({ $landscape, theme }) => $landscape
+    ? (1 - theme.projectCarousel.previewScale) / 2 + theme.projectCarousel.previewScale * theme.projectCarousel.deckPreviewVisible
+    : (1 + theme.projectCarousel.previewScale) / 2};
+  width: 100%;
+  max-width: ${({ $aspectRatio, $landscape, theme }) => $landscape
+    ? `calc(${theme.projectCarousel.landscapeWidth} * ${1 + 2 * theme.projectCarousel.previewScale * theme.projectCarousel.deckPreviewVisible})`
+    : `calc(${theme.projectCarousel.portraitHeight} * ${$aspectRatio * (1 + 2 * theme.projectCarousel.previewScale)} + ${theme.spacing.xl} * 2)`};
+  margin-inline: auto;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    display: block;
+    width: calc((100% - var(--showcase-gap) * 2) / var(--showcase-columns));
+    aspect-ratio: ${({ $aspectRatio }) => $aspectRatio};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    --showcase-gap: 0px;
+    --showcase-columns: ${({ theme }) => 1 + 2 * theme.projectCarousel.previewScale * theme.projectCarousel.deckPreviewVisible};
+    --showcase-offset: ${({ theme }) => (1 - theme.projectCarousel.previewScale) / 2 + theme.projectCarousel.previewScale * theme.projectCarousel.deckPreviewVisible};
+    max-width: ${({ $aspectRatio, $landscape, theme }) => $landscape
+      ? `calc(${theme.projectCarousel.landscapeWidth} * var(--showcase-columns))`
+      : `calc(${theme.projectCarousel.portraitHeight} * ${$aspectRatio} * var(--showcase-columns))`};
+  }
+`;
+
+export const ShowcaseCard = styled(ImageFrame)<{ $position: number; $incoming: boolean; $recycled: boolean }>`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc((100% - var(--showcase-gap) * 2) / var(--showcase-columns));
+  max-width: none;
+  margin: 0;
+  --card-opacity: ${({ $position, theme }) => Math.abs($position) > 1
+    ? 0 : $position === 0 ? 1 : theme.projectCarousel.previewOpacity};
+  opacity: var(--card-opacity);
+  z-index: ${({ $position }) => $position === 0 ? 3 : Math.abs($position) === 1 ? 2 : 1};
+  --current-card-transform: ${({ $position, theme }) => cardTransform($position, theme.projectCarousel.previewScale)};
+  transform: var(--current-card-transform);
+  transition:
+    transform ${({ theme }) => theme.motion.projectCarousel.imageDuration}ms ${({ theme }) => theme.motion.projectCarousel.imageEasing},
+    opacity ${({ theme }) => theme.motion.projectCarousel.imageDuration}ms ${({ theme }) => theme.motion.projectCarousel.imageEasing} !important;
+
+  ${({ $recycled, $incoming, $position, theme }) => $recycled ? css`
+    --previous-card-transform: ${cardTransform(-$position, theme.projectCarousel.previewScale)};
+    --exiting-card-transform: ${cardTransform(-$position * 2, theme.projectCarousel.previewScale)};
+    animation: ${cardRecycle} ${theme.motion.projectCarousel.imageDuration}ms
+      ${theme.motion.projectCarousel.imageEasing} both !important;
+  ` : $incoming && css`
+      animation: ${cardFadeIn} ${theme.motion.projectCarousel.previewFadeDuration}ms ease-out
+        ${$position === 0 ? 0 : theme.motion.projectCarousel.previewFadeDelay}ms both !important;
+    `}
+`;
+
+export const SingleShowcase = styled.div<{ $withCards: boolean; $landscape: boolean }>`
+  display: ${({ $withCards }) => $withCards ? "none" : "block"};
+  max-width: ${({ $landscape, theme }) => $landscape ? theme.projectCarousel.landscapeWidth : "none"};
+  margin-inline: auto;
+`;
+
+export const GalleryCaption = styled.div`
+  margin-top: ${({ theme }) => theme.spacing.lg};
+  text-align: center;
+  overflow-wrap: anywhere;
+
+  > div {
+    animation: ${captionEnter} ${({ theme }) => theme.motion.cardReveal.contentDuration}ms ease-out both;
+  }
+
+  h2 {
+    font-size: ${({ theme }) => theme.fonts.size.lg};
+    font-weight: ${({ theme }) => theme.fonts.weight.semibold};
+  }
+
+  p {
+    margin-top: ${({ theme }) => theme.spacing.sm};
+    color: ${({ theme }) => theme.colors.text.muted};
+  }
+`;
+
 export const CarouselImage = styled(Image)<{
   $animation: "none" | "pending" | "enter" | "exit";
   $direction: number;
@@ -45,9 +154,10 @@ export const CarouselImage = styled(Image)<{
     ($animation === "enter" || $animation === "exit") &&
     css`
       animation: ${$animation === "enter" ? imageEnter : imageExit} ${theme.motion.projectCarousel.imageDuration}ms
-        cubic-bezier(0.22, 1, 0.36, 1) both !important;
+        ${theme.motion.projectCarousel.imageEasing} both !important;
       will-change: transform, opacity;
     `}
+
 `;
 
 export const Controls = styled.div`
@@ -56,7 +166,7 @@ export const Controls = styled.div`
   align-items: baseline;
   gap: ${({ theme }) => theme.spacing.sm};
   width: 100%;
-  max-width: 100%;
+  max-width: ${({ theme }) => theme.projectCarousel.controlsWidth};
   margin-top: ${({ theme }) => theme.spacing.md};
   margin-inline: auto;
 
@@ -99,6 +209,11 @@ export const ControlButton = styled.button`
   &:active {
     color: ${({ theme }) => theme.colors.accent.primary};
     border-color: ${({ theme }) => theme.colors.accent.primary};
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
   }
 
   &:focus-visible {

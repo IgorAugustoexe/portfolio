@@ -1,11 +1,7 @@
 "use client";
 
-import styled, { keyframes } from "styled-components";
-
-const projectPopIn = keyframes`
-  from { opacity: 0; transform: scale(var(--project-entry-scale)); }
-  to { opacity: 1; transform: scale(1); }
-`;
+import styled from "styled-components";
+import { popIn } from "@/shared/styles/popIn";
 
 export const FilterList = styled.ul`
   display: flex;
@@ -50,10 +46,8 @@ export const ProjectGrid = styled.ul`
 `;
 
 export const ProjectItem = styled.li`
-  --project-entry-scale: ${({ theme }) => theme.motion.projectCardEnter.initialScale};
   min-width: 0;
-  animation: ${projectPopIn} ${({ theme }) => theme.motion.projectCardEnter.duration}ms
-    ${({ theme }) => theme.motion.projectCardEnter.easing} both !important;
+  ${popIn}
 `;
 
 export const EmptyState = styled.p`

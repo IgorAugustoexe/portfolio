@@ -53,6 +53,7 @@
 - Usar nos dois painéis somente uma altura mínima compartilhada no desktop.
 - No mobile, empilhar perfil e conteúdo na rolagem normal da página, mantendo a navegação fixa no rodapé.
 - Em tablets e celulares, fazer a sidebar ocupar toda a largura e transformar a navegação em abas fixas no rodapé.
+- Ativar o layout de tablet em larguras de até 1024px, usando o breakpoint compartilhado do tema.
 - Em tablets e celulares, mostrar avatar e descrição na coluna esquerda, com contatos e seletor PT/EN na coluna direita, separados por divisor vertical.
 - Reservar espaço inferior para que as abas do rodapé não cubram o conteúdo.
 - Exibir a autoria e o objetivo do projeto na sidebar do desktop, abaixo dos contatos, e no rodapé do conteúdo no mobile.
@@ -70,8 +71,12 @@
 ## Projetos
 
 - Cada projeto deve ter título, slug, tecnologias, descrição, imagens, desafios e aprendizados.
+- Cada imagem do carrossel deve ter título e descrição curta em português e inglês, além da imagem e do texto alternativo. Cadastrar explicitamente essas informações nos arquivos de dados; um arquivo adicionado à pasta de assets só aparece após esse cadastro.
 - Filtrar os projetos localmente por Todos, Mobile, Desenvolvimento Web e Projetos Acadêmicos.
-- A página de detalhes deve mostrar descrição e tecnologias ao lado do carrossel no desktop.
+- A página de detalhes usa o modelo Vitrine, com a imagem principal centralizada e prévias menores e discretas nas laterais para imagens verticais em telas maiores. No mobile e tablet, sobrepor as prévias atrás da imagem principal, deixando aproximadamente um terço de cada prévia visível. Para imagens horizontais, limitar o tamanho da imagem principal e usar essa sobreposição em todas as larguras.
+- Mostrar título e descrição da imagem ativa abaixo da vitrine, como informação sem seleção. Manter bolinhas, setas e gesto de deslizar para navegar, sem contador visível.
+- Animar a navegação da Vitrine como cartas: a prévia lateral ocupa o centro, a imagem central vai para a lateral e a prévia subsequente entra em fade. Usar os tempos do tema e manter visíveis as transições acionadas pelo usuário nas setas, bolinhas e gesto de deslizar.
+- Mostrar logo e descrição acima da galeria, alinhadas ao topo no desktop, sem resumo ou título adicional para a descrição. Centralizar as tecnologias abaixo da galeria.
 - Desafios e aprendizados devem ficar lado a lado no desktop e empilhados no mobile.
 
 ## Escopo

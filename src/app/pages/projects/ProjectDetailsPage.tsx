@@ -15,6 +15,7 @@ import {
     Description,
     Information,
     Overview,
+    ProjectIntroduction,
     ProjectLogoStamp,
     ResultCard,
     ResultGrid,
@@ -31,6 +32,7 @@ function ProjectDetailsContent({ project, locale }: { project: Project; locale: 
     const dictionary = getDictionary(locale).projects
     const content = project.content[locale]
     const { listRef, isTextVisible } = useSequentialCardReveal<HTMLDivElement>(4, "[data-reveal-block]")
+    const technologiesReveal = useSequentialCardReveal<HTMLDivElement>(project.technologies.length)
 
     return (
         <PagePanel title={project.title} animate>
@@ -39,28 +41,33 @@ function ProjectDetailsContent({ project, locale }: { project: Project; locale: 
                 {dictionary.title}
             </BackLink>
             <div ref={listRef}>
+                <ProjectIntroduction>
+                    {project.logo && (
+                        <ProjectLogoStamp
+                            image={project.logo}
+                            imageSizes={`(max-width: ${theme.breakpoints.mobile}) ${theme.projectLogoStamp.mobileSize}, ${theme.projectLogoStamp.size}`}
+                        />
+                    )}
+                    <Information data-reveal-block $textVisible={isTextVisible(0)}>
+                        <Description $textVisible={isTextVisible(0)}>{content.description}</Description>
+                    </Information>
+                </ProjectIntroduction>
+                {project.images.length > 0 && (
+                    <ProjectCarousel key={project.images.length} images={project.images} locale={locale} />
+                )}
                 <Overview>
-                    <Information $textVisible={isTextVisible(0)}>
-                        <ResultHeading>
-                            {project.logo ? (
-                                <ProjectLogoStamp
-                                    image={project.logo}
-                                    imageSizes={`(max-width: ${theme.breakpoints.mobile}) ${theme.projectLogoStamp.mobileSize}, ${theme.projectLogoStamp.size}`}
+                    <Information data-reveal-block $textVisible={isTextVisible(1)}>
+                        <SmallTitle data-reveal-content>{dictionary.technologies}</SmallTitle>
+                        <TechnologyList ref={technologiesReveal.listRef}>
+                            {project.technologies.map((technology, index) => (
+                                <TechnologyTag
+                                    key={technology.name}
+                                    technology={technology}
+                                    textVisible={technologiesReveal.isTextVisible(index)}
                                 />
-                            ) : (
-                                <SmallTitle data-reveal-content>{dictionary.technologies}</SmallTitle>
-                            )}
-                        </ResultHeading>
-                        <TechnologyList data-reveal-block $textVisible={isTextVisible(0)}>
-                            {project.technologies.map((technology) => (
-                                <TechnologyTag key={technology.name} technology={technology} />
                             ))}
                         </TechnologyList>
-                        <Description data-reveal-block $textVisible={isTextVisible(1)}>{content.description}</Description>
                     </Information>
-                    {project.images.length > 0 && (
-                        <ProjectCarousel key={project.images.length} images={project.images} locale={locale} />
-                    )}
                 </Overview>
 
                 <ResultGrid>

@@ -42,22 +42,34 @@ export const BackLink = styled(Link)`
 
 export const Overview = styled.div`
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: ${({ theme }) => theme.spacing.xl};
   align-items: start;
-  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    grid-template-columns: 1fr;
-  }
+  margin-top: ${({ theme }) => theme.spacing.xxl};
+  padding-top: ${({ theme }) => theme.spacing.xl};
+  border-top: 1px solid ${({ theme }) => theme.colors.border.subtle};
+  text-align: center;
 `;
 
 export const Information = styled.div<{ $textVisible: boolean }>`
   ${cardReveal}
   display: grid;
-  gap: ${({ theme }) => theme.spacing.lg};
-  padding: clamp(1.25rem, 3vw, 2rem);
-  background: ${({ theme }) => theme.gradients.surface};
-  border: 1px solid ${({ theme }) => theme.colors.border.subtle};
-  border-radius: ${({ theme }) => theme.radius.md};
+  gap: ${({ theme }) => theme.spacing.md};
+  min-width: 0;
+
+`;
+
+export const ProjectIntroduction = styled.header`
+  display: flex;
+  align-items: flex-start;
+  gap: ${({ theme }) => theme.spacing.xl};
+  margin-bottom: ${({ theme }) => theme.spacing.xxl};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 `;
 
 export const SmallTitle = styled.h2`
@@ -86,15 +98,11 @@ export const ProjectLogoStamp = styled(IconTile)`
   }
 `;
 
-export const TechnologyList = styled.div<{ $textVisible: boolean }>`
-  ${contentReveal}
+export const TechnologyList = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: ${({ theme }) => theme.spacing.sm};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    justify-content: center;
-  }
 `;
 
 export const Description = styled.p<{ $textVisible: boolean }>`

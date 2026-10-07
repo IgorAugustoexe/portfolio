@@ -127,6 +127,7 @@ export const ContactItem = styled.li`
     gap: ${({ theme }) => theme.spacing.md};
 
     > div {
+        container-type: inline-size;
         min-width: 0;
     }
 
@@ -163,7 +164,7 @@ export const ContactValue = styled.span`
     width: 100%;
     overflow: hidden;
     color: ${({ theme }) => theme.colors.text.secondary};
-    font-size: ${({ theme }) => theme.fonts.size.sm};
+    font-size: ${({ theme }) => theme.profileContacts.fontSize};
     text-overflow: ellipsis;
     white-space: nowrap;
     transition: color ${({ theme }) => theme.transitions.fast};
@@ -172,12 +173,6 @@ export const ContactValue = styled.span`
         color: ${({ theme }) => theme.colors.accent.primary};
     }
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-        overflow: visible;
-        overflow-wrap: anywhere;
-        text-overflow: clip;
-        white-space: normal;
-    }
 `
 
 export const SidebarFooter = styled.footer`

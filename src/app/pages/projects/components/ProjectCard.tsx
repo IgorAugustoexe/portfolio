@@ -28,7 +28,7 @@ export function ProjectCard({
   project,
   locale,
 }: ProjectCardProps) {
-  const dictionary = getDictionary(locale).projects;
+  const dictionary = getDictionary(locale).portfolio;
   const cover = project.cover ?? project.images[0];
 
   return (

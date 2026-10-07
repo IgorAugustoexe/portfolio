@@ -82,6 +82,13 @@ export const theme = {
     mobileSize: "80px",
     imageSize: "85%",
   },
+  skillScale: {
+    labelFontSize: "clamp(0.75rem, 4cqi, 0.875rem)",
+    stackedMaxWidth: "22.5rem",
+  },
+  profileContacts: {
+    fontSize: "clamp(0.75rem, 6cqi, 0.875rem)",
+  },
   projectCarousel: {
     previewScale: 0.85,
     previewOpacity: 0.6,

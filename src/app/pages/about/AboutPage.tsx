@@ -117,10 +117,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
           <SkillScale aria-hidden="true">
             <SkillScaleLabels>
               {skillLevels.map((level) => (
-                <span key={level}>
-                  <span className="full-label">{about.skillLevels[level]}</span>
-                  <span className="compact-label">{about.skillLevelsCompact[level]}</span>
-                </span>
+                <span key={level}>{about.skillLevels[level]}</span>
               ))}
             </SkillScaleLabels>
           </SkillScale>

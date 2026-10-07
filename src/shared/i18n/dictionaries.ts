@@ -5,10 +5,11 @@ const dictionaries = {
     navigation: {
       about: "Sobre",
       resume: "Resumo",
-      projects: "Portfólio",
+      portfolio: "Portfólio",
     },
     footer: {
       message: "Criado por mim, feito especialmente para praticar React com Next.js",
+      signature: "© 2027 Igor Augusto",
     },
     about: {
       title: "Sobre",
@@ -19,11 +20,6 @@ const dictionaries = {
         intermediate: "Intermediário",
         advanced: "Avançado",
       },
-      skillLevelsCompact: {
-        basic: "Bás.",
-        intermediate: "Interm.",
-        advanced: "Avanç.",
-      },
     },
     resume: {
       title: "Resumo",
@@ -31,8 +27,8 @@ const dictionaries = {
       experienceTitle: "Experiência",
       languageSkillsTitle: "Habilidades de Linguagem",
     },
-    projects: {
-      title: "Projetos",
+    portfolio: {
+      title: "Portfolio",
       details: "Ver projeto",
       filterLabel: "Filtrar projetos",
       filters: {
@@ -54,10 +50,11 @@ const dictionaries = {
     navigation: {
       about: "About",
       resume: "Resume",
-      projects: "Portfolio",
+      portfolio: "Portfolio",
     },
     footer: {
       message: "Created by me, especially made to practice React with Next.js",
+      signature: "© 2027 Igor Augusto",
     },
     about: {
       title: "About",
@@ -68,11 +65,6 @@ const dictionaries = {
         intermediate: "Intermediate",
         advanced: "Advanced",
       },
-      skillLevelsCompact: {
-        basic: "Basic",
-        intermediate: "Interm.",
-        advanced: "Adv.",
-      },
     },
     resume: {
       title: "Resume",
@@ -80,8 +72,8 @@ const dictionaries = {
       experienceTitle: "Experience",
       languageSkillsTitle: "Language skills",
     },
-    projects: {
-      title: "Projects",
+    portfolio: {
+      title: "Portfolio",
       details: "View project",
       filterLabel: "Filter projects",
       filters: {

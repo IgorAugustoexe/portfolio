@@ -39,7 +39,7 @@ export function ProjectCarousel({ images, locale }: ProjectCarouselProps) {
     const { selectedIndex, previousIndex, direction, ready } = navigation
     const touchStart = useRef<{ x: number; y: number } | null>(null)
     const loadedImages = useRef(new Set<number>())
-    const dictionary = getDictionary(locale).projects
+    const dictionary = getDictionary(locale).portfolio
     const selectedImage = images[selectedIndex]
     const previousImage = previousIndex === null ? null : images[previousIndex]
     const aspectRatio = selectedImage.src.width / selectedImage.src.height

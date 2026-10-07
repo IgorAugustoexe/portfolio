@@ -93,6 +93,7 @@ export const SkillsSection = styled.section`
 `;
 
 export const SkillsCard = styled.div`
+  container: skills / inline-size;
   --skill-label-width: clamp(120px, 14vw, 180px);
   --skill-marker-size: 10px;
 
@@ -117,9 +118,14 @@ export const SkillScale = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     column-gap: ${({ theme }) => theme.spacing.sm};
   }
+
+  @container skills (max-width: ${({ theme }) => theme.skillScale.stackedMaxWidth}) {
+    grid-template-columns: minmax(0, 1fr);
+  }
 `;
 
 export const SkillScaleLabels = styled.div`
+  container-type: inline-size;
   grid-column: 2;
   position: relative;
   min-height: 1.5em;
@@ -129,6 +135,7 @@ export const SkillScaleLabels = styled.div`
   > span {
     position: absolute;
     top: 0;
+    font-size: ${({ theme }) => theme.skillScale.labelFontSize};
     white-space: nowrap;
   }
 
@@ -136,12 +143,8 @@ export const SkillScaleLabels = styled.div`
   > span:nth-child(2) { left: 50%; transform: translateX(-50%); }
   > span:last-child { right: 0; }
 
-  .compact-label { display: none; }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: ${({ theme }) => theme.fonts.size.xs};
-    .full-label { display: none; }
-    .compact-label { display: inline; }
+  @container skills (max-width: ${({ theme }) => theme.skillScale.stackedMaxWidth}) {
+    grid-column: 1;
   }
 `;
 
@@ -158,6 +161,11 @@ export const SkillRow = styled.li`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     gap: ${({ theme }) => theme.spacing.sm};
+  }
+
+  @container skills (max-width: ${({ theme }) => theme.skillScale.stackedMaxWidth}) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: ${({ theme }) => theme.spacing.xs};
   }
 `;
 

@@ -29,7 +29,7 @@ export function ProjectDetailsPage({ project, locale }: { project: Project; loca
 }
 
 function ProjectDetailsContent({ project, locale }: { project: Project; locale: Locale }) {
-    const dictionary = getDictionary(locale).projects
+    const dictionary = getDictionary(locale).portfolio
     const content = project.content[locale]
     const { listRef, isTextVisible } = useSequentialCardReveal<HTMLDivElement>(4, "[data-reveal-block]")
     const technologiesReveal = useSequentialCardReveal<HTMLDivElement>(project.technologies.length)

@@ -19,7 +19,7 @@ import {
 const projectFilters: ProjectFilter[] = ["all", "mobile", "web", "academic"]
 
 export function ProjectsPage({ locale }: { locale: Locale }) {
-    const dictionary = getDictionary(locale).projects
+    const dictionary = getDictionary(locale).portfolio
     const [selectedFilter, setSelectedFilter] = useState<ProjectFilter>("all")
     const filteredProjects = projects.filter(
         (project) => selectedFilter === "all" || project.category === selectedFilter

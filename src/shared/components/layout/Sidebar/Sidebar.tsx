@@ -37,7 +37,9 @@ export function Sidebar({ locale }: { locale: Locale }) {
       </ProfileHeader>
 
       <Details>
-        <MobileLanguageSlot><LanguageToggle locale={locale} /></MobileLanguageSlot>
+        <MobileLanguageSlot>
+          <LanguageToggle locale={locale} />
+        </MobileLanguageSlot>
         <ContactList>
           {profile.contacts.map((contact) => (
             <ContactItem key={contact.value}>
@@ -64,7 +66,7 @@ export function Sidebar({ locale }: { locale: Locale }) {
 
       <SidebarFooter>
         <SidebarFooterMessage>{dictionary.footer.message}</SidebarFooterMessage>
-        <SidebarCopyright>© 2026 Igor Augusto</SidebarCopyright>
+        <SidebarCopyright>{dictionary.footer.signature}</SidebarCopyright>
       </SidebarFooter>
     </Container>
   );

@@ -10,7 +10,7 @@ import { CurrentNavigationItem, DesktopLanguageSlot, NavIcon, Navigation, Naviga
 const items = [
   { key: "about", path: "about", icon: "about" },
   { key: "resume", path: "resume", icon: "resume" },
-  { key: "projects", path: "projects", icon: "projects" },
+  { key: "portfolio", path: "projects", icon: "projects" },
 ] as const;
 
 export function Navbar({ locale }: { locale: Locale }) {

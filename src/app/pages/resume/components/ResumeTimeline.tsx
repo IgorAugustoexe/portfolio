@@ -2,22 +2,43 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { TimelineItem } from "../models/resume.model";
+import type { AppIconName } from "@/shared/components/ui/AppIcon/AppIcon";
 import type { Locale } from "@/shared/i18n/config";
 import { getLocalizedText } from "@/shared/i18n/getLocalizedText";
 import { theme } from "@/shared/styles/theme";
 import {
-  EntryDescription, EntryMeta, EntryTitle, Section, Timeline,
-  TimelineBall, TimelineContent, TimelineEntry, TimelineMarker,
-  TimelinePath, TimelineSectionTitle, TimelineTitleIcon, TimelineViewport,
+  EntryDescription,
+  EntryMeta,
+  EntryTitle,
+  Section,
+  Timeline,
+  TimelineBall,
+  TimelineContent,
+  TimelineEntry,
+  TimelineMarker,
+  TimelinePath,
+  TimelineSectionTitle,
+  TimelineTitleIcon,
+  TimelineViewport,
 } from "../ResumePage.styles";
 
 type Phase = "idle" | "moving" | "arrived" | "done";
-interface Geometry { axis: number; origin: number; stops: number[] }
+interface Geometry {
+  axis: number;
+  origin: number;
+  stops: number[];
+}
 
-export function ResumeTimeline({ title, items, locale }: {
+export function ResumeTimeline({
+  title,
+  items,
+  locale,
+  icon,
+}: {
   title: string;
   items: TimelineItem[];
   locale: Locale;
+  icon: AppIconName;
 }) {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -41,10 +62,13 @@ export function ResumeTimeline({ title, items, locale }: {
       setGeometry({
         axis: iconBounds.left + iconBounds.width / 2 - bounds.left,
         origin: iconBounds.top + iconBounds.height / 2 - bounds.top,
-        stops: Array.from(list.children).map((entry) =>
-          entry.getBoundingClientRect().top - bounds.top
-            + parseFloat(getComputedStyle(entry).paddingTop)
-            + theme.resumeTimeline.markerTitleOffset),
+        stops: Array.from(list.children).map(
+          (entry) =>
+            entry.getBoundingClientRect().top -
+            bounds.top +
+            parseFloat(getComputedStyle(entry).paddingTop) +
+            theme.resumeTimeline.markerTitleOffset,
+        ),
       });
     };
 
@@ -52,12 +76,15 @@ export function ResumeTimeline({ title, items, locale }: {
     resizeObserver.observe(viewport);
     resizeObserver.observe(heading);
     Array.from(list.children).forEach((entry) => resizeObserver.observe(entry));
-    const intersectionObserver = new IntersectionObserver((entries) => {
-      if (entries.some((entry) => entry.isIntersecting)) {
-        setVisible(true);
-        intersectionObserver.disconnect();
-      }
-    }, { threshold: 0.35 });
+    const intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setVisible(true);
+          intersectionObserver.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
     intersectionObserver.observe(heading);
     measure();
     document.fonts.ready.then(measure);
@@ -92,32 +119,44 @@ export function ResumeTimeline({ title, items, locale }: {
   }, [ready, visible, step, items.length]);
 
   const started = ready && step.phase !== "idle";
-  const currentPosition = started ? geometry.stops[step.index] : geometry?.origin ?? 0;
+  const currentPosition = started ? geometry.stops[step.index] : (geometry?.origin ?? 0);
   const arrived = step.phase === "arrived" || step.phase === "done";
 
   return (
     <Section data-timeline-phase={step.phase} data-timeline-active={step.index}>
       <TimelineSectionTitle ref={headingRef}>
-        <TimelineTitleIcon name="code" />
+        <TimelineTitleIcon name={icon} />
         {title}
       </TimelineSectionTitle>
       <TimelineViewport ref={viewportRef}>
-        <TimelinePath aria-hidden="true" $visible={started} style={{
-          left: geometry?.axis ?? 0, top: geometry?.origin ?? 0,
-          height: started ? Math.max(0, currentPosition - geometry.origin) : 0,
-        }} />
+        <TimelinePath
+          aria-hidden="true"
+          $visible={started}
+          style={{
+            left: geometry?.axis ?? 0,
+            top: geometry?.origin ?? 0,
+            height: started ? Math.max(0, currentPosition - geometry.origin) : 0,
+          }}
+        />
         {geometry?.stops.slice(0, step.index).map((position, index) => (
           <TimelineMarker key={index} aria-hidden="true" style={{ left: geometry.axis, top: position }} />
         ))}
-        <TimelineBall aria-hidden="true" $visible={started}
-          style={{ left: geometry?.axis ?? 0, top: currentPosition }} />
+        <TimelineBall
+          aria-hidden="true"
+          $visible={started}
+          style={{ left: geometry?.axis ?? 0, top: currentPosition }}
+        />
         <Timeline ref={listRef}>
           {items.map((item, index) => (
-            <TimelineEntry key={`${item.organization}-${item.period}-${index}`}
-              $visible={index < step.index || (index === step.index && arrived)}>
+            <TimelineEntry
+              key={`${item.organization}-${item.period}-${index}`}
+              $visible={index < step.index || (index === step.index && arrived)}
+            >
               <TimelineContent $visible={index < step.index || (index === step.index && arrived)}>
                 <EntryTitle>{getLocalizedText(item.title, locale)}</EntryTitle>
-                <EntryMeta>{item.organization} · {item.period}</EntryMeta>
+                <EntryMeta>
+                  {item.organization} · {item.period}
+                </EntryMeta>
                 <EntryDescription>{getLocalizedText(item.description, locale)}</EntryDescription>
               </TimelineContent>
             </TimelineEntry>

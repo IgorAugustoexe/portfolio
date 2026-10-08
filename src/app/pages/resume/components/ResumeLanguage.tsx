@@ -6,12 +6,21 @@ import { getLocalizedText } from "@/shared/i18n/getLocalizedText";
 import { useSequentialCardReveal } from "@/shared/hooks/useSequentialCardReveal";
 import { SectionHeading } from "@/shared/components/ui/SectionHeading/SectionHeading";
 import {
-  Section, LanguageHeader, LanguageSubtitle, LanguageSkillList,
-  LanguageSkillRow, LanguageSkillIcon, LanguageTitle,
-  LanguageDescription, LanguageLevelBadge,
+  Section,
+  LanguageHeader,
+  LanguageSkillList,
+  LanguageSkillRow,
+  LanguageSkillIcon,
+  LanguageTitle,
+  LanguageDescription,
+  LanguageLevelBadge,
 } from "../ResumePage.styles";
 
-export function ResumeLanguage({ language, locale, listLabel }: {
+export function ResumeLanguage({
+  language,
+  locale,
+  listLabel,
+}: {
   language: LanguageProfile;
   locale: Locale;
   listLabel: string;
@@ -24,7 +33,6 @@ export function ResumeLanguage({ language, locale, listLabel }: {
         <SectionHeading id={`language-${language.id}-heading`}>
           {getLocalizedText(language.name, locale)}
         </SectionHeading>
-        <LanguageSubtitle>{getLocalizedText(language.subtitle, locale)}</LanguageSubtitle>
       </LanguageHeader>
       <LanguageSkillList ref={listRef} aria-label={listLabel}>
         {language.skills.map((skill, index) => (

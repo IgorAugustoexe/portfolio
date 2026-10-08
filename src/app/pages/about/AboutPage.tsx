@@ -74,7 +74,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
   }, []);
 
   return (
-    <PagePanel key={locale} title={about.title} animate>
+    <PagePanel key={locale} title={about.title}>
       <AboutIntro>
         {aboutContent.introduction[locale].map((paragraph, index) => (
           <p key={index}>{paragraph}</p>

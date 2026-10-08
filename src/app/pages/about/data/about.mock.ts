@@ -1,7 +1,7 @@
 import type { LocalizedText } from "@/shared/i18n/getLocalizedText";
 import type { AppIconName } from "@/shared/components/ui/AppIcon/AppIcon";
 
-export interface ServiceItem {
+interface ServiceItem {
   id: string;
   icon: AppIconName;
   title: LocalizedText;
@@ -23,7 +23,7 @@ export const aboutContent = {
   services: [
     {
       id: "web",
-      icon: "code",
+      icon: "application",
       title: { pt: "Desenvolvimento web", en: "Web development" },
       description: {
         pt: "Interfaces responsivas construídas com React, Next.js e TypeScript.",
@@ -51,7 +51,7 @@ export const aboutContent = {
     },
     {
       id: "experience",
-      icon: "application",
+      icon: "code",
       title: { pt: "Aplicações intuitivas", en: "Intuitive applications" },
       description: {
         pt: "Experiências simples, consistentes e pensadas para diferentes dispositivos.",

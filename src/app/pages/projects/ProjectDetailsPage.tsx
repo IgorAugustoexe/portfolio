@@ -35,7 +35,7 @@ function ProjectDetailsContent({ project, locale }: { project: Project; locale: 
     const technologiesReveal = useSequentialCardReveal<HTMLDivElement>(project.technologies.length)
 
     return (
-        <PagePanel title={project.title} animate>
+        <PagePanel title={project.title}>
             <BackLink href={`/${locale}/projects`}>
                 <AppIcon name="back" />
                 {dictionary.title}

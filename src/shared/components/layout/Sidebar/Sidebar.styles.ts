@@ -178,7 +178,7 @@ export const ContactValue = styled.span`
 export const SidebarFooter = styled.footer`
     display: grid;
     gap: ${({ theme }) => theme.spacing.sm};
-    margin-top: auto;
+    margin-top: ${({ theme }) => theme.spacing.lg};
     padding-top: ${({ theme }) => theme.spacing.lg};
     color: ${({ theme }) => theme.colors.text.muted};
     border-top: 1px solid ${({ theme }) => theme.colors.border.subtle};

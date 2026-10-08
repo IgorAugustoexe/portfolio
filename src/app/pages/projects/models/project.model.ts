@@ -8,7 +8,7 @@ export interface Technology {
     name: string
 }
 
-export interface ProjectCover {
+interface ProjectCover {
     src: StaticImageData
     alt: LocalizedText
 }
@@ -18,7 +18,7 @@ export interface ProjectImage extends ProjectCover {
     description: LocalizedText
 }
 
-export interface ProjectContent {
+interface ProjectContent {
     summary: string
     description: string
     challenges: string

@@ -131,7 +131,7 @@ export function ProjectCarousel({ images, locale }: ProjectCarouselProps) {
 
     return (
         <Carousel ref={carouselRef} $revealed={isRevealed} aria-label={`${dictionary.imagePosition} ${selectedIndex + 1} / ${images.length}`}>
-            {showPreviews && (
+            {showPreviews ? (
                 <Showcase $aspectRatio={aspectRatio} $landscape={isLandscape}>
                     {cardIndices.map((index) => {
                         const image = images[index]
@@ -170,42 +170,43 @@ export function ProjectCarousel({ images, locale }: ProjectCarouselProps) {
                         )
                     })}
                 </Showcase>
-            )}
-            <SingleShowcase $withCards={showPreviews} $landscape={isLandscape}>
-                <ImageFrame
-                    $aspectRatio={aspectRatio}
-                    onTouchStart={handleTouchStart}
-                    onTouchEnd={handleTouchEnd}
-                    onTouchCancel={() => { touchStart.current = null }}
-                >
-                    {previousImage && (
+            ) : (
+                <SingleShowcase $landscape={isLandscape}>
+                    <ImageFrame
+                        $aspectRatio={aspectRatio}
+                        onTouchStart={handleTouchStart}
+                        onTouchEnd={handleTouchEnd}
+                        onTouchCancel={() => { touchStart.current = null }}
+                    >
+                        {previousImage && (
+                            <CarouselImage
+                                key={`previous-${previousIndex}`}
+                                src={previousImage.src}
+                                alt=""
+                                aria-hidden="true"
+                                fill
+                                sizes={imageSizes}
+                                unoptimized={previousImage.src.width < previousImage.src.height}
+                                $animation={ready ? "exit" : "none"}
+                                $direction={direction}
+                            />
+                        )}
                         <CarouselImage
-                            key={`previous-${previousIndex}`}
-                            src={previousImage.src}
-                            alt=""
-                            aria-hidden="true"
+                            key={`selected-${selectedIndex}`}
+                            src={selectedImage.src}
+                            alt={getLocalizedText(selectedImage.alt, locale)}
                             fill
                             sizes={imageSizes}
-                            unoptimized={previousImage.src.width < previousImage.src.height}
-                            $animation={ready ? "exit" : "none"}
+                            unoptimized={aspectRatio < 1}
+                            priority={selectedIndex === 0}
+                            $animation={previousImage ? (ready ? "enter" : "pending") : "none"}
                             $direction={direction}
+                            onLoad={() => handleImageLoad(selectedIndex)}
+                            onError={() => handleImageLoad(selectedIndex)}
                         />
-                    )}
-                    <CarouselImage
-                        key={`selected-${selectedIndex}`}
-                        src={selectedImage.src}
-                        alt={getLocalizedText(selectedImage.alt, locale)}
-                        fill
-                        sizes={imageSizes}
-                        unoptimized={aspectRatio < 1}
-                        priority={selectedIndex === 0}
-                        $animation={previousImage ? (ready ? "enter" : "pending") : "none"}
-                        $direction={direction}
-                        onLoad={() => handleImageLoad(selectedIndex)}
-                        onError={() => handleImageLoad(selectedIndex)}
-                    />
-                </ImageFrame>
-            </SingleShowcase>
+                    </ImageFrame>
+                </SingleShowcase>
+            )}
             <GalleryCaption aria-live="polite" aria-atomic="true">
                 <div key={`${selectedIndex}-${locale}`}>
                     <h2>{getLocalizedText(selectedImage.title, locale)}</h2>

@@ -12,14 +12,18 @@ export function ResumePage({ locale }: { locale: Locale }) {
   const dictionary = getDictionary(locale).resume;
 
   return (
-    <PagePanel key={locale} title={dictionary.title} animate>
+    <PagePanel key={locale} title={dictionary.title}>
       <ResumeGrid>
-        <ResumeTimeline title={dictionary.educationTitle} items={education} locale={locale} />
-        <ResumeTimeline title={dictionary.experienceTitle} items={experience} locale={locale} />
+        <ResumeTimeline title={dictionary.experienceTitle} items={experience} locale={locale} icon={"experience"} />
+        <ResumeTimeline title={dictionary.educationTitle} items={education} locale={locale} icon={"graduation"} />
 
         {languageProfiles.map((language) => (
-          <ResumeLanguage key={`${locale}-${language.id}`} language={language}
-            locale={locale} listLabel={dictionary.languageSkillsTitle} />
+          <ResumeLanguage
+            key={`${locale}-${language.id}`}
+            language={language}
+            locale={locale}
+            listLabel={dictionary.languageSkillsTitle}
+          />
         ))}
       </ResumeGrid>
     </PagePanel>

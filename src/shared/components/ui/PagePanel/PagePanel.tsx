@@ -5,13 +5,11 @@ import { Panel, Title } from "./PagePanel.styles"
 
 interface PagePanelProps extends PropsWithChildren {
     title: string
-    className?: string
-    animate?: boolean
 }
 
-export function PagePanel({ title, children, className, animate = false }: PagePanelProps) {
+export function PagePanel({ title, children }: PagePanelProps) {
     return (
-        <Panel className={className} $animate={animate}>
+        <Panel>
             <Title>{title}</Title>
             {children}
         </Panel>

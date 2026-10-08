@@ -1,6 +1,6 @@
 export type SkillLevel = "basic" | "intermediate" | "advanced";
 
-export interface Skill {
+interface Skill {
   name: string;
   level: SkillLevel;
 }

@@ -73,10 +73,6 @@ export const languageProfiles: LanguageProfile[] = [
   {
     id: "english",
     name: { pt: "Inglês", en: "English" },
-    subtitle: {
-      pt: "Habilidades e uso profissional",
-      en: "Skills and professional use",
-    },
     skills: [
       {
         id: "reading",

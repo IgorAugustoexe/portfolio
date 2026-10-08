@@ -113,12 +113,6 @@ export const LanguageHeader = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing.lg};
 `;
 
-export const LanguageSubtitle = styled.p`
-  margin-top: ${({ theme }) => theme.spacing.sm};
-  color: ${({ theme }) => theme.colors.text.muted};
-  font-size: ${({ theme }) => theme.fonts.size.md};
-`;
-
 export const LanguageSkillList = styled.ul`
   display: grid;
   gap: ${({ theme }) => theme.spacing.md};

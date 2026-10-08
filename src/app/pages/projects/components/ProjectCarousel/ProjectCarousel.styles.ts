@@ -114,8 +114,7 @@ export const ShowcaseCard = styled(ImageFrame)<{ $position: number; $incoming: b
     `}
 `;
 
-export const SingleShowcase = styled.div<{ $withCards: boolean; $landscape: boolean }>`
-  display: ${({ $withCards }) => $withCards ? "none" : "block"};
+export const SingleShowcase = styled.div<{ $landscape: boolean }>`
   max-width: ${({ $landscape, theme }) => $landscape ? theme.projectCarousel.landscapeWidth : "none"};
   margin-inline: auto;
 `;

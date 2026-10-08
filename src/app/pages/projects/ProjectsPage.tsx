@@ -26,7 +26,7 @@ export function ProjectsPage({ locale }: { locale: Locale }) {
     )
 
     return (
-        <PagePanel key={locale} title={dictionary.title} animate>
+        <PagePanel key={locale} title={dictionary.title}>
             <FilterList aria-label={dictionary.filterLabel}>
                 {projectFilters.map((filter) => (
                     <li key={filter}>

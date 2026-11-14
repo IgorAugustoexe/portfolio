@@ -50,6 +50,7 @@ export const Avatar = styled(Image)`
     height: 148px;
     margin-bottom: ${({ theme }) => theme.spacing.lg};
     object-fit: cover;
+    object-position: center top;
     background: ${({ theme }) => theme.gradients.surface};
     border-radius: ${({ theme }) => theme.radius.md};
 

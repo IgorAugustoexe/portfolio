@@ -1,6 +1,6 @@
 import type { LocalizedText } from "@/shared/i18n/getLocalizedText";
 import type { AppIconName } from "@/shared/components/ui/AppIcon/AppIcon";
-import avatarImage from "@/assets/images/profile/avatar.gif";
+import avatarImage from "@/assets/images/profile/avatar.png";
 
 interface ContactItem {
   value: string;

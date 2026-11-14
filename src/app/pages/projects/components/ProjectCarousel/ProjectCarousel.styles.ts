@@ -57,14 +57,18 @@ export const ImageFrame = styled.figure<{ $aspectRatio: number }>`
 export const Showcase = styled.div<{ $aspectRatio: number; $landscape: boolean }>`
   position: relative;
   --showcase-gap: ${({ $landscape, theme }) => $landscape ? "0px" : theme.spacing.xl};
+  --showcase-preview-visible: ${({ $landscape, theme }) => $landscape
+    ? theme.projectCarousel.landscapePreviewVisible
+    : theme.projectCarousel.deckPreviewVisible};
   --showcase-columns: ${({ $landscape, theme }) =>
-    1 + 2 * theme.projectCarousel.previewScale * ($landscape ? theme.projectCarousel.deckPreviewVisible : 1)};
+    $landscape ? `calc(1 + 2 * ${theme.projectCarousel.previewScale} * var(--showcase-preview-visible))`
+      : 1 + 2 * theme.projectCarousel.previewScale};
   --showcase-offset: ${({ $landscape, theme }) => $landscape
-    ? (1 - theme.projectCarousel.previewScale) / 2 + theme.projectCarousel.previewScale * theme.projectCarousel.deckPreviewVisible
+    ? `calc(${(1 - theme.projectCarousel.previewScale) / 2} + ${theme.projectCarousel.previewScale} * var(--showcase-preview-visible))`
     : (1 + theme.projectCarousel.previewScale) / 2};
   width: 100%;
   max-width: ${({ $aspectRatio, $landscape, theme }) => $landscape
-    ? `calc(${theme.projectCarousel.landscapeWidth} * ${1 + 2 * theme.projectCarousel.previewScale * theme.projectCarousel.deckPreviewVisible})`
+    ? `calc(${theme.projectCarousel.landscapeWidth} * var(--showcase-columns))`
     : `calc(${theme.projectCarousel.portraitHeight} * ${$aspectRatio * (1 + 2 * theme.projectCarousel.previewScale)} + ${theme.spacing.xl} * 2)`};
   margin-inline: auto;
   overflow: hidden;
@@ -78,8 +82,8 @@ export const Showcase = styled.div<{ $aspectRatio: number; $landscape: boolean }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     --showcase-gap: 0px;
-    --showcase-columns: ${({ theme }) => 1 + 2 * theme.projectCarousel.previewScale * theme.projectCarousel.deckPreviewVisible};
-    --showcase-offset: ${({ theme }) => (1 - theme.projectCarousel.previewScale) / 2 + theme.projectCarousel.previewScale * theme.projectCarousel.deckPreviewVisible};
+    --showcase-columns: calc(1 + 2 * ${({ theme }) => theme.projectCarousel.previewScale} * var(--showcase-preview-visible));
+    --showcase-offset: calc(${({ theme }) => (1 - theme.projectCarousel.previewScale) / 2} + ${({ theme }) => theme.projectCarousel.previewScale} * var(--showcase-preview-visible));
     max-width: ${({ $aspectRatio, $landscape, theme }) => $landscape
       ? `calc(${theme.projectCarousel.landscapeWidth} * var(--showcase-columns))`
       : `calc(${theme.projectCarousel.portraitHeight} * ${$aspectRatio} * var(--showcase-columns))`};

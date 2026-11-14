@@ -82,6 +82,9 @@ export const theme = {
     mobileSize: "80px",
     imageSize: "85%",
   },
+  projectCard: {
+    stackedBreakpoint: "1600px",
+  },
   skillScale: {
     labelFontSize: "clamp(0.75rem, 4cqi, 0.875rem)",
     stackedMaxWidth: "22.5rem",
@@ -94,7 +97,8 @@ export const theme = {
     previewOpacity: 0.6,
     controlsWidth: "42rem",
     portraitHeight: "clamp(36rem, 62vh, 56rem)",
-    landscapeWidth: "36rem",
+    landscapeWidth: "64rem",
+    landscapePreviewVisible: 1 / 12,
     deckPreviewVisible: 1 / 3,
     indicatorsPerRow: 20,
     indicatorSize: "12px",

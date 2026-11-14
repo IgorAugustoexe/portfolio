@@ -4,6 +4,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { IconTile } from "@/shared/components/ui/IconTile/IconTile";
 import { cardReveal, contentReveal } from "@/shared/styles/cardReveal";
+import { ProjectTechnologies } from "./components/ProjectTechnologies";
 
 export const BackLink = styled(Link)`
   display: inline-flex;
@@ -54,6 +55,7 @@ export const Overview = styled.div`
 export const Information = styled.div<{ $textVisible: boolean }>`
   ${cardReveal}
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: ${({ theme }) => theme.spacing.md};
   min-width: 0;
 
@@ -98,11 +100,8 @@ export const ProjectLogoStamp = styled(IconTile)`
   }
 `;
 
-export const TechnologyList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+export const TechnologyList = styled(ProjectTechnologies)`
   justify-content: center;
-  gap: ${({ theme }) => theme.spacing.sm};
 `;
 
 export const Description = styled.p<{ $textVisible: boolean }>`

@@ -2,10 +2,10 @@
 
 import type { Project } from "@/app/pages/projects/models/project.model";
 import { IconTile } from "@/shared/components/ui/IconTile/IconTile";
-import { TechnologyTag } from "@/shared/components/ui/TechnologyTag/TechnologyTag";
 import type { Locale } from "@/shared/i18n/config";
 import { getDictionary } from "@/shared/i18n/dictionaries";
 import { getLocalizedText } from "@/shared/i18n/getLocalizedText";
+import { theme } from "@/shared/styles/theme";
 import {
   ProjectCategory,
   ProjectContent,
@@ -40,8 +40,7 @@ export function ProjectCard({
         <ProjectImage
           src={cover.src}
           alt={getLocalizedText(cover.alt, locale)}
-          fill
-          sizes="(max-width: 1024px) 100vw, 42vw"
+          sizes={`(width < ${theme.projectCard.stackedBreakpoint}) 100vw, 42vw`}
         />
         <ProjectImageOverlay aria-hidden="true">
           <IconTile name="view" size="large" />
@@ -53,13 +52,10 @@ export function ProjectCard({
           <ProjectCategory>{dictionary.filters[project.category]}</ProjectCategory>
         </ProjectHeader>
         <ProjectSummary>{project.content[locale].summary}</ProjectSummary>
-        <ProjectTechnologyList aria-label={dictionary.technologies}>
-          {project.technologies.map((technology) => (
-            <li key={technology.name}>
-              <TechnologyTag technology={technology} />
-            </li>
-          ))}
-        </ProjectTechnologyList>
+        <ProjectTechnologyList
+          technologies={project.technologies}
+          label={dictionary.technologies}
+        />
       </ProjectContent>
     </ProjectLink>
   );

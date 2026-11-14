@@ -44,7 +44,7 @@ export function ProjectCarousel({ images, locale }: ProjectCarouselProps) {
     const previousImage = previousIndex === null ? null : images[previousIndex]
     const aspectRatio = selectedImage.src.width / selectedImage.src.height
     const isLandscape = aspectRatio >= 1
-    const imageSizes = `(max-width: ${theme.breakpoints.tablet}) 100vw, ${isLandscape ? "45vw" : "35vw"}`
+    const imageSizes = `(max-width: ${theme.breakpoints.tablet}) 100vw, ${isLandscape ? "75vw" : "35vw"}`
     const showPreviews = images.length > 2
     const getCardIndices = (index: number) => [
         (index + images.length - 1) % images.length,
@@ -158,7 +158,7 @@ export function ProjectCarousel({ images, locale }: ProjectCarouselProps) {
                                     src={image.src}
                                     alt={isSelected ? getLocalizedText(image.alt, locale) : ""}
                                     fill
-                                    sizes={isLandscape ? `(max-width: ${theme.breakpoints.tablet}) 65vw, 45vw` : "35vw"}
+                                    sizes={isLandscape ? imageSizes : "35vw"}
                                     unoptimized={image.src.width < image.src.height}
                                     priority={index === 0}
                                     $animation="none"

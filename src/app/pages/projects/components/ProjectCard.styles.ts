@@ -3,10 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled, { css } from "styled-components";
+import { ProjectTechnologies } from "./ProjectTechnologies";
 
 const verticalImageLayout = css`
-  min-height: 0;
-  aspect-ratio: 16 / 9;
   border-right: 0;
   border-bottom: 1px solid ${({ theme }) => theme.colors.border.subtle};
   border-radius: ${({ theme }) => `calc(${theme.radius.md} - 1px) calc(${theme.radius.md} - 1px) ${theme.radius.projectImage} ${theme.radius.projectImage}`};
@@ -36,27 +35,28 @@ export const ProjectLink = styled(Link)`
     transition: border-color ${({ theme }) => theme.transitions.normal} !important;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+  @media (width < ${({ theme }) => theme.projectCard.stackedBreakpoint}) {
     grid-template-columns: minmax(0, 1fr);
   }
 `;
 
 export const ProjectImageFrame = styled.div`
   position: relative;
-  min-height: 280px;
+  align-self: center;
+  min-width: 0;
   overflow: hidden;
   border-radius: ${({ theme }) => `calc(${theme.radius.md} - 1px) ${theme.radius.projectImage} ${theme.radius.projectImage} calc(${theme.radius.md} - 1px)`};
   border-right: 1px solid ${({ theme }) => theme.colors.border.subtle};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+  @media (width < ${({ theme }) => theme.projectCard.stackedBreakpoint}) {
     ${verticalImageLayout}
   }
 `;
 
 export const ProjectImage = styled(Image)`
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   transition: transform ${({ theme }) => theme.transitions.projectImageZoom};
 
   @media (hover: hover) and (pointer: fine) {
@@ -151,10 +151,7 @@ export const ProjectSummary = styled.p`
   color: ${({ theme }) => theme.colors.text.muted};
 `;
 
-export const ProjectTechnologyList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: ${({ theme }) => theme.spacing.sm};
+export const ProjectTechnologyList = styled(ProjectTechnologies)`
   margin-top: auto;
   padding-top: ${({ theme }) => theme.spacing.lg};
 `;

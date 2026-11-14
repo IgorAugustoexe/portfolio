@@ -3,7 +3,6 @@
 import type { Project } from "@/app/pages/projects/models/project.model"
 import { ProjectCarousel } from "@/app/pages/projects/components/ProjectCarousel/ProjectCarousel"
 import { PagePanel } from "@/shared/components/ui/PagePanel/PagePanel"
-import { TechnologyTag } from "@/shared/components/ui/TechnologyTag/TechnologyTag"
 import { IconTile } from "@/shared/components/ui/IconTile/IconTile"
 import { AppIcon } from "@/shared/components/ui/AppIcon/AppIcon"
 import type { Locale } from "@/shared/i18n/config"
@@ -32,7 +31,7 @@ function ProjectDetailsContent({ project, locale }: { project: Project; locale: 
     const dictionary = getDictionary(locale).portfolio
     const content = project.content[locale]
     const { listRef, isTextVisible } = useSequentialCardReveal<HTMLDivElement>(4, "[data-reveal-block]")
-    const technologiesReveal = useSequentialCardReveal<HTMLDivElement>(project.technologies.length)
+    const technologiesReveal = useSequentialCardReveal<HTMLUListElement>(project.technologies.length)
 
     return (
         <PagePanel title={project.title}>
@@ -49,7 +48,9 @@ function ProjectDetailsContent({ project, locale }: { project: Project; locale: 
                         />
                     )}
                     <Information data-reveal-block $textVisible={isTextVisible(0)}>
-                        <Description $textVisible={isTextVisible(0)}>{content.description}</Description>
+                        {content.description.split("\n\n").map((paragraph, index) => (
+                            <Description key={index} $textVisible={isTextVisible(0)}>{paragraph}</Description>
+                        ))}
                     </Information>
                 </ProjectIntroduction>
                 {project.images.length > 0 && (
@@ -58,15 +59,12 @@ function ProjectDetailsContent({ project, locale }: { project: Project; locale: 
                 <Overview>
                     <Information data-reveal-block $textVisible={isTextVisible(1)}>
                         <SmallTitle data-reveal-content>{dictionary.technologies}</SmallTitle>
-                        <TechnologyList ref={technologiesReveal.listRef}>
-                            {project.technologies.map((technology, index) => (
-                                <TechnologyTag
-                                    key={technology.name}
-                                    technology={technology}
-                                    textVisible={technologiesReveal.isTextVisible(index)}
-                                />
-                            ))}
-                        </TechnologyList>
+                        <TechnologyList
+                            technologies={project.technologies}
+                            label={dictionary.technologies}
+                            listRef={technologiesReveal.listRef}
+                            isTextVisible={technologiesReveal.isTextVisible}
+                        />
                     </Information>
                 </Overview>
 

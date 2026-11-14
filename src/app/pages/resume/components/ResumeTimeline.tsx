@@ -149,13 +149,13 @@ export function ResumeTimeline({
         <Timeline ref={listRef}>
           {items.map((item, index) => (
             <TimelineEntry
-              key={`${item.organization}-${item.period}-${index}`}
+              key={`${item.organization}-${getLocalizedText(item.period, locale)}-${index}`}
               $visible={index < step.index || (index === step.index && arrived)}
             >
               <TimelineContent $visible={index < step.index || (index === step.index && arrived)}>
                 <EntryTitle>{getLocalizedText(item.title, locale)}</EntryTitle>
                 <EntryMeta>
-                  {item.organization} · {item.period}
+                  {item.organization} · {getLocalizedText(item.period, locale)}
                 </EntryMeta>
                 <EntryDescription>{getLocalizedText(item.description, locale)}</EntryDescription>
               </TimelineContent>

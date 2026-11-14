@@ -4,7 +4,7 @@ import type { AppIconName } from "@/shared/components/ui/AppIcon/AppIcon";
 export interface TimelineItem {
   title: LocalizedText;
   organization: string;
-  period: string;
+  period: LocalizedText;
   description: LocalizedText;
 }
 

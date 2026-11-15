@@ -52,6 +52,7 @@ export function Sidebar({ locale }: { locale: Locale }) {
                     href={contact.href}
                     target={contact.href.startsWith("http") ? "_blank" : undefined}
                     rel={contact.href.startsWith("http") ? "noreferrer" : undefined}
+                    data-umami-event={contact.analyticsEvent}
                   >
                     <ContactValue>{contact.value}</ContactValue>
                   </a>

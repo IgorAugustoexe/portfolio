@@ -6,6 +6,7 @@ interface ContactItem {
   value: string;
   href?: string;
   icon: AppIconName;
+  analyticsEvent?: string;
 }
 
 export const profile = {
@@ -25,11 +26,13 @@ export const profile = {
       value: "LinkedIn",
       href: "https://www.linkedin.com/in/igor-augusto-dev/",
       icon: "linkedin",
+      analyticsEvent: "linkedin_click",
     },
     {
       value: "GitHub",
       href: "https://github.com/IgorAugustoexe",
       icon: "github",
+      analyticsEvent: "github_click",
     },
   ] satisfies ContactItem[],
 };

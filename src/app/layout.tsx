@@ -5,6 +5,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { StarfieldBackground } from "@/shared/components/background/StarfieldBackground/StarfieldBackground";
 import { StyledComponentsRegistry } from "@/shared/styles/StyledComponentsRegistry";
+import { UmamiAnalytics } from "@/shared/components/analytics/UmamiAnalytics";
 
 config.autoAddCss = false;
 
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="pt-BR" className={poppins.variable}>
       <body>
+        <UmamiAnalytics />
         <StyledComponentsRegistry>
           <StarfieldBackground />
           {children}

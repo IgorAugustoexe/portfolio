@@ -46,8 +46,8 @@ export const ProfileHeader = styled.div`
 `
 
 export const Avatar = styled(Image)`
-    width: 148px;
-    height: 148px;
+    width: ${({ theme }) => theme.profileAvatar.desktopSize};
+    height: ${({ theme }) => theme.profileAvatar.desktopSize};
     margin-bottom: ${({ theme }) => theme.spacing.lg};
     object-fit: cover;
     object-position: center top;
@@ -55,13 +55,13 @@ export const Avatar = styled(Image)`
     border-radius: ${({ theme }) => theme.radius.md};
 
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-        width: 128px;
-        height: 128px;
+        width: ${({ theme }) => theme.profileAvatar.tabletSize};
+        height: ${({ theme }) => theme.profileAvatar.tabletSize};
         margin-bottom: ${({ theme }) => theme.spacing.md};
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-        width: min(100%, 112px);
+        width: min(100%, ${({ theme }) => theme.profileAvatar.mobileSize});
         height: auto;
         aspect-ratio: 1;
     }

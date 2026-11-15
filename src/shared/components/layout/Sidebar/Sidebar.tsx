@@ -29,7 +29,7 @@ export function Sidebar({ locale }: { locale: Locale }) {
   return (
     <Container>
       <ProfileHeader>
-        <Avatar src={profile.avatar} alt={profile.name} width={160} height={160} priority />
+        <Avatar src={profile.avatar} alt={profile.name} width={176} height={176} priority />
         <div>
           <Name>{profile.name}</Name>
           <Role>{getLocalizedText(profile.role, locale)}</Role>

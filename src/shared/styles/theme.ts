@@ -89,6 +89,11 @@ export const theme = {
     labelFontSize: "clamp(0.75rem, 4cqi, 0.875rem)",
     stackedMaxWidth: "22.5rem",
   },
+  profileAvatar: {
+    desktopSize: "176px",
+    tabletSize: "144px",
+    mobileSize: "128px",
+  },
   profileContacts: {
     fontSize: "clamp(0.75rem, 6cqi, 0.875rem)",
   },

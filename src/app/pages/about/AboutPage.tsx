@@ -123,14 +123,15 @@ export function AboutPage({ locale }: { locale: Locale }) {
           </SkillScale>
           <SkillList ref={skillsListRef}>
             {skills.map((skill) => {
+              const skillLabel = skill.label ? getLocalizedText(skill.label, locale) : skill.name;
               const levelIndex = skillLevels.indexOf(skill.level);
               const isVisible = visibleSkills.has(skill.name);
               return (
                 <SkillRow key={skill.name} data-skill={skill.name}>
-                  <SkillName>{skill.name}</SkillName>
+                  <SkillName>{skillLabel}</SkillName>
                   <SkillTrack
                     role="meter"
-                    aria-label={skill.name}
+                    aria-label={skillLabel}
                     aria-valuemin={1}
                     aria-valuemax={3}
                     aria-valuenow={levelIndex + 1}

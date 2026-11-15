@@ -6,6 +6,7 @@ export type ProjectFilter = "all" | ProjectCategory
 
 export interface Technology {
     name: string
+    label?: LocalizedText
 }
 
 interface ProjectCover {

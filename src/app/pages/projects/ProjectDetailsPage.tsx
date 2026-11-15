@@ -62,6 +62,7 @@ function ProjectDetailsContent({ project, locale }: { project: Project; locale: 
                         <TechnologyList
                             technologies={project.technologies}
                             label={dictionary.technologies}
+                            locale={locale}
                             listRef={technologiesReveal.listRef}
                             isTextVisible={technologiesReveal.isTextVisible}
                         />
@@ -74,14 +75,18 @@ function ProjectDetailsContent({ project, locale }: { project: Project; locale: 
                             <IconTile name="challenges" />
                             <SmallTitle data-reveal-content>{dictionary.challenges}</SmallTitle>
                         </ResultHeading>
-                        <p data-reveal-content>{content.challenges}</p>
+                        {content.challenges.split("\n\n").map((paragraph, index) => (
+                            <p key={index} data-reveal-content>{paragraph}</p>
+                        ))}
                     </ResultCard>
                     <ResultCard data-reveal-block $textVisible={isTextVisible(3)}>
                         <ResultHeading>
                             <IconTile name="learnings" />
                             <SmallTitle data-reveal-content>{dictionary.learnings}</SmallTitle>
                         </ResultHeading>
-                        <p data-reveal-content>{content.learnings}</p>
+                        {content.learnings.split("\n\n").map((paragraph, index) => (
+                            <p key={index} data-reveal-content>{paragraph}</p>
+                        ))}
                     </ResultCard>
                 </ResultGrid>
             </div>

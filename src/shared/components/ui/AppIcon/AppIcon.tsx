@@ -5,6 +5,7 @@ import {
   faArrowRight,
   faBookOpen,
   faBriefcase,
+  faBrain,
   faChevronDown,
   faCode,
   faComments,
@@ -30,6 +31,7 @@ export type AppIconName =
   | "code"
   | "mobile"
   | "application"
+  | "ai"
   | "about"
   | "resume"
   | "projects"
@@ -53,6 +55,7 @@ const icons: Record<AppIconName, IconDefinition> = {
   code: faCode,
   mobile: faMobile,
   application: faLaptopCode,
+  ai: faBrain,
   about: faHouse,
   resume: faFileLines,
   projects: faFolderOpen,

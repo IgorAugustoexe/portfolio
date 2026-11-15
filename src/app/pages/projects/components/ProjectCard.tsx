@@ -55,6 +55,7 @@ export function ProjectCard({
         <ProjectTechnologyList
           technologies={project.technologies}
           label={dictionary.technologies}
+          locale={locale}
         />
       </ProjectContent>
     </ProjectLink>

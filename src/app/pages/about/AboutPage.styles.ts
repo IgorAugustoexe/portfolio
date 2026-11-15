@@ -13,7 +13,6 @@ const skillWidths: Record<SkillLevel, string> = {
 export const AboutIntro = styled.div`
   display: grid;
   gap: ${({ theme }) => theme.spacing.sm};
-  max-width: 58ch;
   margin-bottom: clamp(3rem, 6vw, 5rem);
   color: ${({ theme }) => theme.colors.text.secondary};
   font-size: ${({ theme }) => theme.fonts.size.md};
